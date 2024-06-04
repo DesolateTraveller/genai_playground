@@ -65,40 +65,48 @@ def embedchain_bot(db_path):
 
 st.sidebar.header("Input", divider='blue')
 st.sidebar.info('Please choose from the following options and follow the instructions to start the application.', icon="ℹ️")
-action_type = st.sidebar.radio("**:blue[Choose the Chat action]**", ["PDF","PPT","Word","Excel","Image","Video","Email"])
+action_type = st.sidebar.radio("**:blue[Choose the action]**", ["Q&A", "Chatbot"])
 st.sidebar.divider()
+
+#-----------------------------------
+
+if action_type == "Q&A" :
+    
+    data_source = st.sidebar.radio("**:blue[Choose the action]**", ["PDF", "PPT","Word","Excel","Image","Video", "Email"])
+    st.sidebar.divider() 
 
 #-----------------------------------
 ### PDF
 #-----------------------------------
-if action_type == "PDF" :
 
-  st.subheader("PDF | Q&A",divider='blue')
-  st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
-  db_path = tempfile.mkdtemp()
-  app = embedchain_bot(db_path)
+    if data_source == "PDF" :
+
+        st.subheader("PDF | Q&A",divider='blue')
+        st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
+        db_path = tempfile.mkdtemp()
+        app = embedchain_bot(db_path)
   
-  #-----------------------------------
+        #-----------------------------------
                       
-  col1, col2 = st.columns((0.3,0.7))
+        col1, col2 = st.columns((0.3,0.7))
 
-  with col1:
+        with col1:
 
-    pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf")
-    if pdf_file:
-      with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
-        f.write(pdf_file.getvalue())
-        app.add(f.name, data_type="pdf_file")
-      os.remove(f.name)
-      st.success(f"Added {pdf_file.name} to knowledge base!")
+            pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf")
+            if pdf_file:
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
+                    f.write(pdf_file.getvalue())
+                    app.add(f.name, data_type="pdf_file")
+                os.remove(f.name)
+                st.success(f"Added {pdf_file.name} to knowledge base!")
 
-    prompt = st.text_input("**:blue[Ask a question about the PDF]**")
-    if prompt:
-       with st.spinner("Generating answer..."):
-        with col2:
+            prompt = st.text_input("**:blue[Ask a question about the PDF]**")
+            if prompt:
+                with st.spinner("Generating answer..."):
+                    with col2:
 
-            st.subheader("Answer",divider='blue')
-            st.success("**Answer generated successfully**")
-            answer = app.chat(prompt)
-            st.write(answer)
+                        st.subheader("Answer",divider='blue')
+                        st.success("**Answer generated successfully**")
+                        answer = app.chat(prompt)
+                        st.write(answer)
 
