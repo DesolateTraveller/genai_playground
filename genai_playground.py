@@ -72,7 +72,7 @@ st.sidebar.divider()
 
 if action_type == "Q&A" :
     
-    data_source = st.sidebar.radio("**:blue[Choose the action]**", ["PDF", "PPT","Word","Excel","Image","Video", "Email"])
+    data_source = st.sidebar.radio("**:blue[Select the file type]**", ["PDF", "PPT","Word","Excel","Image","Video", "Email"])
     st.sidebar.divider() 
 
 #-----------------------------------
@@ -92,6 +92,7 @@ if action_type == "Q&A" :
 
         with col1:
 
+            st.subheader("Question",divider='blue')
             pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf")
             if pdf_file:
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
