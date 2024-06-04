@@ -92,7 +92,7 @@ if action_type == "PDF" :
       os.remove(f.name)
       st.success(f"Added {pdf_file.name} to knowledge base!")
 
-    prompt = st.text_input("**:blue[Ask a question about the PDF]")
+    prompt = st.text_input("**:blue[Ask a question about the PDF]**")
     if prompt:
        with st.spinner("Generating answer..."):
         with col2:
