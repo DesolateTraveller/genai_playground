@@ -71,7 +71,7 @@ st.sidebar.divider()
 #-----------------------------------
 ### PDF
 #-----------------------------------
-if action_type == "pdf" :
+if action_type == "PDF" :
 
   st.subheader("Question & Answers with PDF",divider='blue')
   st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
