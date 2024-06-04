@@ -17,7 +17,7 @@ from embedchain import App
 st.set_page_config(page_title="GenAI | Playground",
                    layout="wide",
                    #page_icon=               
-                   initial_sidebar_state="collapsed")
+                   initial_sidebar_state="auto",)
 #----------------------------------------
 st.title(f""":rainbow[Generative AI | Playground | v0.1]""")
 st.markdown('Created by | <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a>', 
@@ -71,7 +71,7 @@ st.sidebar.divider()
 #-----------------------------------
 ### PDF
 #-----------------------------------
-if action_type == "Information" :
+if action_type == "pdf" :
 
   st.subheader("Question & Answers with PDF",divider='blue')
   st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
