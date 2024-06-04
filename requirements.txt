@@ -6,3 +6,5 @@ seaborn
 embedchain
 chromadb
 pysqlite3-binary
+ollama
+langchain
