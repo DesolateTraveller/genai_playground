@@ -89,8 +89,8 @@ if action_type == "PDF" :
       with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
         f.write(pdf_file.getvalue())
         app.add(f.name, data_type="pdf_file")
-    os.remove(f.name)
-    st.success(f"Added {pdf_file.name} to knowledge base!")
+      os.remove(f.name)
+      st.success(f"Added {pdf_file.name} to knowledge base!")
 
     prompt = st.text_input("Ask a question about the PDF")
     if prompt:
