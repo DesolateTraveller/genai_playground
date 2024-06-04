@@ -65,7 +65,7 @@ def embedchain_bot(db_path):
 
 st.sidebar.header("Input", divider='blue')
 st.sidebar.info('Please choose from the following options and follow the instructions to start the application.', icon="ℹ️")
-action_type = st.sidebar.radio("**:blue[Choose the Chat action]**", ["PDF", "PPT","Word","Excel","Image","Video", "Email"])
+action_type = st.sidebar.radio("**:blue[Choose the Chat action]**", ["PDF","PPT","Word","Excel","Image","Video","Email"])
 st.sidebar.divider()
 
 #-----------------------------------
@@ -84,7 +84,7 @@ if action_type == "PDF" :
 
   with col1:
 
-    pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf",accept_multiple_files=True)
+    pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf")
     if pdf_file:
       with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
         f.write(pdf_file.getvalue())
