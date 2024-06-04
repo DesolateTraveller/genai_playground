@@ -61,3 +61,27 @@ def embedchain_bot(db_path):
         }
     )
 
+#---------------------------------------------------------------------------------------------------------------------------------
+### Main App
+#---------------------------------------------------------------------------------------------------------------------------------
+
+db_path = tempfile.mkdtemp()
+app = embedchain_bot(db_path)
+
+pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
+
+if pdf_file:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
+        f.write(pdf_file.getvalue())
+        app.add(f.name, data_type="pdf_file")
+    os.remove(f.name)
+    st.success(f"Added {pdf_file.name} to knowledge base!")
+
+#---------------------------------------------------------------------------------------------------------------------------------
+### Q&A
+#---------------------------------------------------------------------------------------------------------------------------------
+
+prompt = st.text_input("Ask a question about the PDF")
+if prompt:
+    answer = app.chat(prompt)
+    st.write(answer)
