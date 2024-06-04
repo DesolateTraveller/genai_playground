@@ -134,13 +134,14 @@ if action_type == "Q&A" :
             text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=10)
             splits = text_splitter.split_documents(docs)
 
-            embeddings = OllamaEmbeddings(model="llama3")
+            embeddings = OllamaEmbeddings(model=llm_model)
             vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
 
             @st.cache_data(ttl="2h")
             def ollama_llm(question, context):
                 formatted_prompt = f"Question: {question}\n\nContext: {context}"
-                response = ollama.chat(model='llama3', messages=[{'role': 'user', 'content': formatted_prompt}])
+                response = ollama.chat(model=llm_model, 
+                                       messages=[{'role': 'user', 'content': formatted_prompt}])
                 return response['message']['content']
             
             retriever = vectorstore.as_retriever()
