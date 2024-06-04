@@ -9,7 +9,12 @@ import os
 import tempfile
 #----------------------------------------
 from embedchain import App
-
+#----------------------------------------
+import ollama
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import OllamaEmbeddings
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Title and description for your Streamlit app
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -17,7 +22,7 @@ from embedchain import App
 st.set_page_config(page_title="GenAI | Playground",
                    layout="wide",
                    #page_icon=               
-                   initial_sidebar_state="auto",)
+                   initial_sidebar_state="collapsed")
 #----------------------------------------
 st.title(f""":rainbow[Generative AI | Playground | v0.1]""")
 st.markdown('Created by | <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a>', 
@@ -51,12 +56,12 @@ def embedchain_bot(db_path):
                                "max_tokens": max_tokens, 
                                "temperature": temperature, 
                                "stream": True, 
-                               "base_url": 'http://localhost:8080'}},
+                               "base_url": 'http://localhost:11434'}},
             "vectordb": {"provider": "chroma", 
                          "config": {"dir": db_path}},
             "embedder": {"provider": "ollama", 
                          "config": {"model": llm_model, 
-                                    "base_url": 'http://localhost:8080'}},
+                                    "base_url": 'http://localhost:11434'}},
         }
     )
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -72,7 +77,7 @@ st.sidebar.divider()
 
 if action_type == "Q&A" :
     
-    data_source = st.sidebar.radio("**:blue[Select the file type]**", ["PDF", "PPT","Word","Excel","Image","Video", "Email"])
+    data_source = st.sidebar.radio("**:blue[Select the file type]**", ["PDF","PPT","Word","Excel","Image","Video","Email","Webpage"])
     st.sidebar.divider() 
 
 #-----------------------------------
@@ -82,7 +87,7 @@ if action_type == "Q&A" :
     if data_source == "PDF" :
 
         st.subheader("PDF | Q&A",divider='blue')
-        st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
+        st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama]**")
         db_path = tempfile.mkdtemp()
         app = embedchain_bot(db_path)
   
@@ -111,3 +116,61 @@ if action_type == "Q&A" :
                         answer = app.chat(prompt)
                         st.write(answer)
 
+
+#-----------------------------------
+### Webpage
+#-----------------------------------
+
+    if data_source == "Webpage" :
+
+        st.subheader("Webpage | Q&A",divider='blue')
+        st.caption("**:blue-background[This app allows you to chat with a webpage using local Llama-3 and RAG]**")       
+
+        webpage_url = st.text_input("Enter Webpage URL", type="default")
+
+        if webpage_url:
+            loader = WebBaseLoader(webpage_url)
+            docs = loader.load()
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=10)
+            splits = text_splitter.split_documents(docs)
+
+            embeddings = OllamaEmbeddings(model="llama3")
+            vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
+
+            @st.cache_data(ttl="2h")
+            def ollama_llm(question, context):
+                formatted_prompt = f"Question: {question}\n\nContext: {context}"
+                response = ollama.chat(model='llama3', messages=[{'role': 'user', 'content': formatted_prompt}])
+                return response['message']['content']
+            
+            retriever = vectorstore.as_retriever()
+
+            @st.cache_data(ttl="2h")
+            def combine_docs(docs):
+                return "\n\n".join(doc.page_content for doc in docs)
+
+            @st.cache_data(ttl="2h")
+            def rag_chain(question):
+                retrieved_docs = retriever.invoke(question)
+                formatted_context = combine_docs(retrieved_docs)
+                return ollama_llm(question, formatted_context)
+
+            st.success(f"Loaded {webpage_url} successfully!")
+
+        #-----------------------------------
+                      
+        col1, col2 = st.columns((0.3,0.7))
+
+        with col1:
+
+            st.subheader("Question",divider='blue')
+            prompt = st.text_input("**:blue[Ask a question about the PDF]**")
+
+            if prompt:
+                with st.spinner("Generating answer..."):
+                    with col2:
+
+                        st.subheader("Answer",divider='blue')
+                        st.success("**Answer generated successfully**")
+                        answer = rag_chain(prompt)
+                        st.write(answer)
