@@ -20,8 +20,7 @@ st.set_page_config(page_title="GenAI | Playground",
                    initial_sidebar_state="collapsed")
 #----------------------------------------
 st.title(f""":rainbow[Generative AI | Playground | v0.1]""")
-#st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
-st.markdown('**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]** |   Created by | <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a>', 
+st.markdown('Created by | <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a>', 
             unsafe_allow_html=True)
 st.info('**Disclaimer : :blue[Thank you for visiting the app] | Unauthorized uses or copying of the app is strictly prohibited | Click the :blue[sidebar] to follow the instructions to start the applications.**', icon="ℹ️")
 #----------------------------------------
@@ -64,23 +63,42 @@ def embedchain_bot(db_path):
 ### Main App
 #---------------------------------------------------------------------------------------------------------------------------------
 
-db_path = tempfile.mkdtemp()
-app = embedchain_bot(db_path)
+st.sidebar.header("Input", divider='blue')
+st.sidebar.info('Please choose from the following options and follow the instructions to start the application.', icon="ℹ️")
+action_type = st.sidebar.radio("**:blue[Choose the Chat action]**", ["PDF", "PPT","Word","Excel","Image","Video", "Email"])
+st.sidebar.divider()
 
-pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
+#-----------------------------------
+### PDF
+#-----------------------------------
+if action_type == "Information" :
 
-if pdf_file:
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
+  st.subheader("Question & Answers with PDF",divider='blue')
+  st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
+  db_path = tempfile.mkdtemp()
+  app = embedchain_bot(db_path)
+  
+  #-----------------------------------
+                      
+  col1, col2 = st.columns((0.3,0.7))
+
+  with col1:
+
+    pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf",accept_multiple_files=True)
+    if pdf_file:
+      with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
         f.write(pdf_file.getvalue())
         app.add(f.name, data_type="pdf_file")
     os.remove(f.name)
     st.success(f"Added {pdf_file.name} to knowledge base!")
 
-#---------------------------------------------------------------------------------------------------------------------------------
-### Q&A
-#---------------------------------------------------------------------------------------------------------------------------------
+    prompt = st.text_input("Ask a question about the PDF")
+    if prompt:
+       with st.spinner("Generating answer..."):
+        with col2:
 
-prompt = st.text_input("Ask a question about the PDF")
-if prompt:
-    answer = app.chat(prompt)
-    st.write(answer)
+            st.subheader("Answer",divider='blue')
+            st.success("**Answer generated successfully**")
+            answer = app.chat(prompt)
+            st.write(answer)
+
