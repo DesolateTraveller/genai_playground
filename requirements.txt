@@ -8,4 +8,4 @@ chromadb
 pysqlite3-binary
 ollama
 langchain
-langchain_community
+langchain-community
