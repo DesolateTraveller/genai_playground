@@ -73,7 +73,7 @@ st.sidebar.divider()
 #-----------------------------------
 if action_type == "PDF" :
 
-  st.subheader("Question & Answers with PDF",divider='blue')
+  st.subheader("PDF | Q&A",divider='blue')
   st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama!]**")
   db_path = tempfile.mkdtemp()
   app = embedchain_bot(db_path)
@@ -92,7 +92,7 @@ if action_type == "PDF" :
       os.remove(f.name)
       st.success(f"Added {pdf_file.name} to knowledge base!")
 
-    prompt = st.text_input("Ask a question about the PDF")
+    prompt = st.text_input("**:blue[Ask a question about the PDF]")
     if prompt:
        with st.spinner("Generating answer..."):
         with col2:
