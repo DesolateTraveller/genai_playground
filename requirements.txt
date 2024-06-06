@@ -9,6 +9,5 @@ pysqlite3-binary
 ollama
 langchain
 langchain-community
-cv2
 docx
 PyPDF2
