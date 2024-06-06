@@ -56,12 +56,12 @@ def embedchain_bot(db_path):
                                "max_tokens": max_tokens, 
                                "temperature": temperature, 
                                "stream": True, 
-                               "base_url": 'http://localhost:11434'}},
+                               "base_url": 'http://localhost:8888'}},
             "vectordb": {"provider": "chroma", 
                          "config": {"dir": db_path}},
             "embedder": {"provider": "ollama", 
                          "config": {"model": llm_model, 
-                                    "base_url": 'http://localhost:11434'}},
+                                    "base_url": 'http://localhost:8888'}},
         }
     )
 #---------------------------------------------------------------------------------------------------------------------------------
