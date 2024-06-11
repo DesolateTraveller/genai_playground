@@ -35,8 +35,9 @@ st.divider()
 ### LLM Hyperparameters
 #---------------------------------------------------------------------------------------------------------------------------------
 
-stats_expander = st.sidebar.expander("**:blue[LLM HyperParameters]**", expanded=False)
-with stats_expander: 
+#stats_expander = st.sidebar.expander("**:blue[LLM HyperParameters]**", expanded=False)
+#with stats_expander: 
+with st.sidebar.popover("**:blue[LLM HyperParameters]**", help="Tune the hyperparameters whenever required"):  
     llm_model = st.selectbox("**Select LLM**", ["llama3:instruct","anthropic.claude-v2:1","amazon.titan-text-express-v1","ai21.j2-ultra-v1","anthropic.claude-3-sonnet-20240229-v1:0"])
     max_tokens = st.number_input("**Max Tokens**", value=250)
     temperature= st.number_input(label="**Temperature (randomness)**",step=.1,format="%.2f", value=0.7)
