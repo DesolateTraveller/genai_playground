@@ -49,22 +49,7 @@ with st.sidebar.popover("**:blue[LLM HyperParameters]**", help="Tune the hyperpa
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Main Functions
 #---------------------------------------------------------------------------------------------------------------------------------
-def embedchain_bot(db_path):
-    return App.from_config(
-        config={
-            "llm": {"provider": "ollama", 
-                    "config": {"model": llm_model, 
-                               "max_tokens": max_tokens, 
-                               "temperature": temperature, 
-                               "stream": True, 
-                               "base_url": 'http://localhost:8888'}},
-            "vectordb": {"provider": "chroma", 
-                         "config": {"dir": db_path}},
-            "embedder": {"provider": "ollama", 
-                         "config": {"model": llm_model, 
-                                    "base_url": 'http://localhost:8888'}},
-        }
-    )
+
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Main App
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -85,37 +70,6 @@ if action_type == "Q&A" :
 ### PDF
 #-----------------------------------
 
-    if data_source == "PDF" :
-
-        st.subheader("PDF | Q&A",divider='blue')
-        st.caption("**:blue-background[This app allows you to chat with a PDF using Llama3 running locally with Ollama]**")
-        db_path = tempfile.mkdtemp()
-        app = embedchain_bot(db_path)
-  
-        #-----------------------------------
-                      
-        col1, col2 = st.columns((0.3,0.7))
-
-        with col1:
-
-            st.subheader("Question",divider='blue')
-            pdf_file = st.file_uploader("**:blue[Choose a PDF file]**",type="pdf")
-            if pdf_file:
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as f:
-                    f.write(pdf_file.getvalue())
-                    app.add(f.name, data_type="pdf_file")
-                os.remove(f.name)
-                st.success(f"Added {pdf_file.name} to knowledge base!")
-
-            prompt = st.text_input("**:blue[Ask a question about the PDF]**")
-            if prompt:
-                with st.spinner("Generating answer..."):
-                    with col2:
-
-                        st.subheader("Answer",divider='blue')
-                        st.success("**Answer generated successfully**")
-                        answer = app.chat(prompt)
-                        st.write(answer)
 
 
 #-----------------------------------
