@@ -25,12 +25,17 @@ import pdf2image
 #import docx
 import docx2txt
 #from docx import Document
-#from pptx import Presentation
+from pptx import Presentation
 import pytesseract
 from pytesseract import Output, TesseractError
 #----------------------------------------
 import openai
 #
+from langchain.llms import OpenAI
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.chains import ConversationalRetrievalChain
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Title and description for your Streamlit app
@@ -64,11 +69,13 @@ with st.sidebar.popover("**:blue[LLM HyperParameters]**", help="Tune the hyperpa
     chunk_size= st.number_input(label="**chunk_size (managable segments)**",step=100, value=10000) 
     chunk_overlap= st.number_input(label="**chunk_overlap (overlap between chunks)**",step=100, value=1000) 
 
-openai.api_key = 'sk-proj-xvqhdaixDa0QtfXJxzcOT3BlbkFJjn691lYWMU2A9In7192C'
+#openai.api_key = 'sk-proj-xvqhdaixDa0QtfXJxzcOT3BlbkFJjn691lYWMU2A9In7192C'
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Main Functions
 #---------------------------------------------------------------------------------------------------------------------------------
+
+## Pdf Extraction
 
 @st.cache_data(ttl="2h")
 def extract_text_from_pdf(uploaded_file):
@@ -96,6 +103,19 @@ def extract_text_from_pdf_s3(pdf_bytes):
             text += page.extract_text()
     return text
 
+#-------------------------------------------------------------------
+
+## PPT Extraction
+
+@st.cache_data(ttl="2h")
+def extract_text_from_ppt(ppt_file):
+    text = ""
+    prs = Presentation(ppt_file)
+    for slide in prs.slides:
+        for shape in slide.shapes:
+            if hasattr(shape, "text"):
+                text += shape.text + "\n"
+    return text
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Main App
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -118,13 +138,31 @@ if action_type == "Q&A" :
 
 if data_source == "PDF" :
     
-    uploaded_file = st.file_uploader("Upload PDFs", type=["pdf"])
+    uploaded_file = st.file_uploader("**:blue[Choose a PDF file]**", type=["pdf"])
     st.sidebar.divider()
 
     if uploaded_file is not None:
         with st.spinner(text="In progress..."):
-            st.success('Text extracted from the upload file successfully')
             text = extract_text_from_pdf(uploaded_file)
+
+            stats_expander = st.expander("**:blue[Information]**", expanded=False)
+            with stats_expander:
+
+                txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
+                st.info(f'Total **:blue[{len(txt)} characters.]**')
+
+#-----------------------------------
+### PPT
+#-----------------------------------
+
+if data_source == "PPT" :
+    
+    uploaded_file = st.file_uploader("**:blue[Choose a PPT file]**", type=["pdf"])
+    st.sidebar.divider()
+
+    if uploaded_file is not None:
+        with st.spinner(text="In progress..."):
+            text = extract_text_from_ppt(uploaded_file)
 
             stats_expander = st.expander("**:blue[Information]**", expanded=False)
             with stats_expander:
@@ -135,5 +173,4 @@ if data_source == "PDF" :
 #-----------------------------------
 ### Webpage
 #-----------------------------------
-
 
