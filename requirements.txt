@@ -8,7 +8,7 @@ pypdf2
 fitz
 pdf2image
 docx
-pptx
+python-pptx
 pytesseract
 doc2txt
 requests
