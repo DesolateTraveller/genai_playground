@@ -1,63 +1,142 @@
+#---------------------------------------------------------------------------------------------------------------------------------
+### Authenticator
+#---------------------------------------------------------------------------------------------------------------------------------
 import streamlit as st
-import PyPDF2  # for extracting text from PDFs
+#---------------------------------------------------------------------------------------------------------------------------------
+### Import Libraries
+#---------------------------------------------------------------------------------------------------------------------------------
+import io
+import os
+import json
+import time
+import base64
+import tempfile
+import requests
+import warnings
+from PIL import Image
+from random import randint
+from io import BytesIO
+warnings.filterwarnings("ignore")
+#----------------------------------------
+import cv2
+import PyPDF2
+import fitz
+import pdf2image
+import docx
+import docx2txt
+from docx import Document
+from pptx import Presentation
+import pytesseract
+from pytesseract import Output, TesseractError
+#----------------------------------------
 import openai
+#
 from langchain.llms import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains import ConversationalRetrievalChain
 
-# Set your OpenAI API key
-openai.api_key = 'your_openai_api_key'
+#---------------------------------------------------------------------------------------------------------------------------------
+### Title and description for your Streamlit app
+#---------------------------------------------------------------------------------------------------------------------------------
+#import custom_style()
+st.set_page_config(page_title="Digi-e",
+                   layout="wide",
+                   #page_icon=               
+                   initial_sidebar_state="collapsed")
+#----------------------------------------
+st.title(f""":rainbow[Digi-e | v0.1]""")
+st.markdown('Created by | <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a>', 
+            unsafe_allow_html=True)
+st.info('**Disclaimer : :blue[Thank you for visiting the app] | Unauthorized uses or copying of the app is strictly prohibited | Click the :blue[sidebar] to follow the instructions to start the applications.**', icon="ℹ️")
+#----------------------------------------
+# Set the background image
+st.divider()
 
-# Streamlit app title
-st.title("Ask Questions from Multiple PDFs")
+#---------------------------------------------------------------------------------------------------------------------------------
+### LLM Hyperparameters
+#---------------------------------------------------------------------------------------------------------------------------------
 
-# Upload PDFs
-uploaded_files = st.file_uploader("Upload PDFs", type=["pdf"], accept_multiple_files=True)
+#stats_expander = st.sidebar.expander("**:blue[LLM HyperParameters]**", expanded=False)
+#with stats_expander: 
+with st.sidebar.popover("**:blue[LLM HyperParameters]**", help="Tune the hyperparameters whenever required"):  
+    llm_model = st.selectbox("**Select LLM**", ["llama3:instruct","anthropic.claude-v2:1","amazon.titan-text-express-v1","ai21.j2-ultra-v1","anthropic.claude-3-sonnet-20240229-v1:0"])
+    max_tokens = st.number_input("**Max Tokens**", value=250)
+    temperature= st.number_input(label="**Temperature (randomness)**",step=.1,format="%.2f", value=0.7)
+    top_p= st.number_input(label="**top_p (cumulative probability)**",step=.01,format="%.2f", value=0.9)
+    top_k= st.number_input(label="**top_k (top k most probable tokens)**",step=10, value=250)                                  
+    chunk_size= st.number_input(label="**chunk_size (managable segments)**",step=100, value=10000) 
+    chunk_overlap= st.number_input(label="**chunk_overlap (overlap between chunks)**",step=100, value=1000) 
 
-# Initialize an empty string to store all texts from PDFs
-all_text = ""
+openai.api_key = 'sk-proj-xvqhdaixDa0QtfXJxzcOT3BlbkFJjn691lYWMU2A9In7192C'
 
-if uploaded_files:
-    st.write("Uploaded files:")
-    for uploaded_file in uploaded_files:
-        st.write(f"- {uploaded_file.name}")
+#---------------------------------------------------------------------------------------------------------------------------------
+### Main Functions
+#---------------------------------------------------------------------------------------------------------------------------------
 
-        # Extract text from each PDF using PyPDF2
+@st.cache_data(ttl="2h")
+def extract_text_from_pdf(uploaded_file):
+    try:
+        # Open the PDF file
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
         
         # Extract text from each page
         text = ""
         for page in pdf_reader.pages:
             text += page.extract_text()
-# If no PDFs are uploaded, prompt the user
-if not all_text:
-    st.write("Please upload some PDF files to proceed.")
+        
+        return text
+    except Exception as e:
+        st.error(f"Error occurred while extracting text from PDF: {e}")
+        return None
+    
+@st.cache_data(ttl="2h")
+def extract_text_from_pdf_s3(pdf_bytes):
+    pdf_file = BytesIO(pdf_bytes)
+    text = ""
+    with pdf_file as f:
+        pdf_reader = PyPDF2.PdfReader(f)
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+    return text
 
-# If PDFs are uploaded and text is extracted
-if all_text:
-    # Split the text into manageable chunks
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-    documents = text_splitter.split_text(all_text)
+#---------------------------------------------------------------------------------------------------------------------------------
+### Main App
+#---------------------------------------------------------------------------------------------------------------------------------
 
-    # Embed the chunks using OpenAI embeddings
-    embeddings = OpenAIEmbeddings()
-    index = FAISS.from_texts(documents, embeddings)
+st.sidebar.header("Input", divider='blue')
+st.sidebar.info('Please choose from the following options and follow the instructions to start the application.', icon="ℹ️")
+action_type = st.sidebar.radio("**:blue[Choose the action]**", ["Q&A", "Chatbot"])
+st.sidebar.divider()
 
-    # Initialize ConversationalRetrievalChain
-    chain = ConversationalRetrievalChain.from_chain_type(
-        llm=OpenAI(),
-        chain_type="stuff",
-        retriever=index.as_retriever()
-    )
+#-----------------------------------
 
-    # Get user query
-    query = st.text_input("Enter your question:")
+if action_type == "Q&A" :
+    
+    data_source = st.sidebar.radio("**:blue[Select the file type]**", ["PDF","PPT","Word","Excel","Image","Video","Email","Webpage"])
+    st.sidebar.divider() 
 
-    if query:
-        # Get the answer
-        response = chain.run(query)
+#-----------------------------------
+### PDF
+#-----------------------------------
 
-        # Display the answer
-        st.write("Answer:", response)
+if data_source == "PDF" :
+    
+    uploaded_file = st.file_uploader("Upload PDFs", type=["pdf"])
+    st.sidebar.divider()
+
+    if uploaded_file is not None:
+        text = extract_text_from_pdf(uploaded_file)
+
+    stats_expander = st.expander("**:blue[Information]**", expanded=True)
+    with stats_expander:
+
+        txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
+        st.info(f'Total **:blue[{len(txt)} characters.]**')
+
+
+#-----------------------------------
+### Webpage
+#-----------------------------------
+
