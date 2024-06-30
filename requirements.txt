@@ -7,7 +7,7 @@ opencv-python
 pypdf2
 #fitz
 pdf2image
-docx
+docx==0.2.4 
 python-pptx
 pytesseract
 docx2txt
