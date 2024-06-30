@@ -11,4 +11,4 @@ langchain-community
 docx
 PyPDF2
 openai 
-PyMuPDF
+PyMuPDF==1.24.7
