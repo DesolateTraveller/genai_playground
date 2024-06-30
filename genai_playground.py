@@ -8,14 +8,15 @@ import streamlit as st
 import os
 import tempfile
 #----------------------------------------
-import PyMuPDF  # for extracting text from PDFs
+import PyPDF2 
 #----------------------------------------
 import openai
 #
 from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import OpenAI
-from langchain.document_loaders import PyPDFLoader
+from langchain.document_loaders import TextLoader
 from langchain.indexes import FAISS
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import VectorstoreWrapper
 
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -50,7 +51,7 @@ with st.sidebar.popover("**:blue[LLM HyperParameters]**", help="Tune the hyperpa
     chunk_size= st.number_input(label="**chunk_size (managable segments)**",step=100, value=10000) 
     chunk_overlap= st.number_input(label="**chunk_overlap (overlap between chunks)**",step=100, value=1000) 
 
-openai.api_key = 'your_openai_api_key'
+openai.api_key = 'sk-proj-xvqhdaixDa0QtfXJxzcOT3BlbkFJjn691lYWMU2A9In7192C'
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Main Functions
@@ -87,10 +88,10 @@ if data_source == "PDF" :
         for uploaded_file in uploaded_files:
                 st.write(f"- {uploaded_file.name}")
 
-        pdf_reader = PyMuPDF.open(uploaded_file)
-        for page_num in range(pdf_reader.page_count):
-            page = pdf_reader.load_page(page_num)
-            all_text += page.get_text()
+        pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
+        for page_num in range(pdf_reader.numPages):
+            page = pdf_reader.getPage(page_num)
+            all_text += page.extract_text()
 
     if not all_text:
         st.write("Please upload some PDF files to proceed.")
