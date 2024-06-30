@@ -3,7 +3,7 @@ numpy
 pandas
 matplotlib
 seaborn
-cv2
+cv
 pypdf2
 fitz
 pdf2image
