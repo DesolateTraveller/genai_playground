@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 #----------------------------------------
 #import cv2
 import PyPDF2
-import fitz
+#import fitz
 import pdf2image
 import docx
 import docx2txt
@@ -133,7 +133,7 @@ if data_source == "PDF" :
     with stats_expander:
 
         txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
-        st.info(f'Total **:blue[{len(txt)} characters.]**')
+                                st.info(f'Total **:blue[{len(txt)} characters.]**')
 
 
 #-----------------------------------
