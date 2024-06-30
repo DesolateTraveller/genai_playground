@@ -25,11 +25,12 @@ if uploaded_files:
         st.write(f"- {uploaded_file.name}")
 
         # Extract text from each PDF using PyPDF2
-        pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
-        for page_num in range(pdf_reader.numPages):
-            page = pdf_reader.getPage(page_num)
-            all_text += page.extract_text()
-
+        pdf_reader = PyPDF2.PdfReader(uploaded_file)
+        
+        # Extract text from each page
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
 # If no PDFs are uploaded, prompt the user
 if not all_text:
     st.write("Please upload some PDF files to proceed.")
