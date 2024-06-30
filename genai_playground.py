@@ -92,8 +92,8 @@ if data_source == "PDF" :
         for page in pdf_reader.pages:
             text += page.extract_text()
 
-    if not all_text:
-        st.write("Please upload some PDF files to proceed.")
+    #if not all_text:
+        #st.write("Please upload some PDF files to proceed.")
 
     if all_text:
 
