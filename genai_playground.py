@@ -12,12 +12,11 @@ import PyPDF2
 #----------------------------------------
 import openai
 #
-from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import OpenAI
-from langchain.document_loaders import TextLoader
-from langchain.indexes import FAISS
+from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import VectorstoreWrapper
+from langchain.vectorstores import FAISS
+from langchain.chains import ConversationalRetrievalChain
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Title and description for your Streamlit app
