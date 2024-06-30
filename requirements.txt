@@ -12,4 +12,4 @@ docx2txt
 requests
 langchain
 pygwalker
-
+openai
