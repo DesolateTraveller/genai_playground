@@ -3,7 +3,6 @@ numpy
 pandas
 matplotlib
 seaborn
-embedchain
 chromadb
 pysqlite3-binary
 ollama
@@ -11,3 +10,5 @@ langchain
 langchain-community
 docx
 PyPDF2
+openai 
+PyMuPDF
