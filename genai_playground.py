@@ -97,15 +97,31 @@ if data_source == "PDF" :
 
     if all_text:
 
-        loader = PyPDFLoader([uploaded_file.name for uploaded_file in uploaded_files])
-        documents = loader.load()
-        index = FAISS.from_documents(documents, OpenAIEmbeddings())
-        chain = ConversationalRetrievalChain(llm=OpenAI(), retriever=VectorstoreWrapper(index))
+        # Split the text into manageable chunks
+        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+        documents = text_splitter.split_text(all_text)
 
+        # Embed the chunks using OpenAI embeddings
+        embeddings = OpenAIEmbeddings()
+        index = FAISS.from_texts(documents, embeddings)
+
+        # Initialize ConversationalRetrievalChain
+        chain = ConversationalRetrievalChain.from_chain_type(
+            llm=OpenAI(),
+            chain_type="stuff",
+            retriever=index.as_retriever()
+            )
+
+        # Get user query
         query = st.text_input("Enter your question:")
+
         if query:
+            # Get the answer
             response = chain.run(query)
+
+            # Display the answer
             st.write("Answer:", response)
+
 
 #-----------------------------------
 ### Webpage
