@@ -10,7 +10,7 @@ pdf2image
 docx
 python-pptx
 pytesseract
-doc2txt
+docx2txt
 requests
 langchain
 pygwalker
