@@ -124,12 +124,11 @@ if data_source == "PDF" :
     if uploaded_file is not None:
         text = extract_text_from_pdf(uploaded_file)
 
-    stats_expander = st.expander("**:blue[Information]**", expanded=True)
-    with stats_expander:
+        stats_expander = st.expander("**:blue[Information]**", expanded=True)
+        with stats_expander:
 
-        txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
-        st.info(f'Total **:blue[{len(txt)} characters.]**')
-
+            txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
+            st.info(f'Total **:blue[{len(txt)} characters.]**')
 
 #-----------------------------------
 ### Webpage
