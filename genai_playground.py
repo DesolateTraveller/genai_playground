@@ -22,10 +22,10 @@ warnings.filterwarnings("ignore")
 import PyPDF2
 #import fitz
 import pdf2image
-import docx
+#import docx
 import docx2txt
-from docx import Document
-from pptx import Presentation
+#from docx import Document
+#from pptx import Presentation
 import pytesseract
 from pytesseract import Output, TesseractError
 #----------------------------------------
@@ -139,4 +139,5 @@ if data_source == "PDF" :
 #-----------------------------------
 ### Webpage
 #-----------------------------------
+
 
