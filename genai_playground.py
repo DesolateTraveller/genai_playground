@@ -31,11 +31,6 @@ from pytesseract import Output, TesseractError
 #----------------------------------------
 import openai
 #
-from langchain.llms import OpenAI
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.chains import ConversationalRetrievalChain
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Title and description for your Streamlit app
