@@ -18,7 +18,7 @@ from random import randint
 from io import BytesIO
 warnings.filterwarnings("ignore")
 #----------------------------------------
-import cv2
+#import cv2
 import PyPDF2
 import fitz
 import pdf2image
