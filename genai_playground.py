@@ -122,10 +122,6 @@ if page == "Welcome":
 
     st.markdown("""
         <div style="background-color: #F0F8FF; padding: 20px; border-radius: 10px; text-align: center; max-width: 800px; margin: 0 auto;">
-            <h5 style="color: #6495ED;">Welcome to the App</h5>
-            <p style="color: #4B4B4B;">
-                click the button above to access different sections and explore the following features
-            </p>
             <ul style="color: #4B4B4B; text-align: left; margin-left: 20px; display: inline-block;">
                 <li><strong>Home:</strong> Understand the project overview and get started with the app.</li>
                 <li><strong>Analysis:</strong> Upload your data and explore step-by-step analytical tools.</li>
@@ -144,13 +140,19 @@ if page == "ml_studio":
     st.divider()
 
     st.markdown("""
-        <div style="background-color: #F0F8FF; padding: 20px; border-radius: 10px; text-align: center; max-width: 800px; margin: 0 auto;">
-            <h5 style="color: #6495ED;">Welcome to the App</h5>
-            <ul style="color: #4B4B4B; text-align: left; margin-left: 20px; display: inline-block;">
-                <li>use the following link : <strong>https://ml-studio.streamlit.app/</strong> for more details.</li>
+    <div style="background-color: #E6F7FF; padding: 25px; border-radius: 15px; text-align: center; max-width: 850px; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+        <h3 style="color: #0056D2; font-family: Arial, sans-serif; margin-bottom: 15px;">🎉 Welcome to the App!</h3>
+            <ul style="color: #333; text-align: left; margin: 0; padding: 0; list-style-type: none; font-size: 16px; line-height: 1.8; display: inline-block;">
+                <li>Use the following link for more details:</li>
+                    <li style="margin-top: 10px;">
+                    <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; text-decoration: none;">
+                    https://ml-studio.streamlit.app/
+                    </a>
+                </li>
             </ul>
-        </div>
-        """,unsafe_allow_html=True,) 
+    </div>
+    """, unsafe_allow_html=True)
+    
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "web_scapper":
     
