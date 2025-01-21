@@ -138,6 +138,19 @@ if page == "Home" :
 
     st.divider()
 
+#---------------------------------------------------------------------------------------------------------------------------------
+if page == "ml_studio":
+    
+    st.divider()
+
+    st.markdown("""
+        <div style="background-color: #F0F8FF; padding: 20px; border-radius: 10px; text-align: center; max-width: 800px; margin: 0 auto;">
+            <h5 style="color: #6495ED;">Welcome to the App</h5>
+            <ul style="color: #4B4B4B; text-align: left; margin-left: 20px; display: inline-block;">
+                <li>use the following link : <strong>https://ml-studio.streamlit.app/</strong> for more details.</li>
+            </ul>
+        </div>
+        """,unsafe_allow_html=True,) 
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "web_scapper":
     
