@@ -121,10 +121,14 @@ if page == "Welcome":
     st.divider()
 
     st.markdown("""
-        <div style="background-color: #E6F7FF; padding: 25px; border-radius: 15px; text-align: center; max-width: 100%; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+        <div style="background-color: #E6F5FF; padding: 25px; border-radius: 15px; text-align: center; max-width: 100%; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <h5 style="color: #6495ED;">Welcome to the App</h5>
+            <p style="color: #4B4B4B;">
+                click the button above to access different sections and explore the following features
+            </p>            
             <ul style="color: #4B4B4B; text-align: left; margin-left: 20px; display: inline-block;">
                 <li><strong>Home:</strong> Understand the project overview and get started with the app.</li>
-                <li><strong>Analysis:</strong> Upload your data and explore step-by-step analytical tools.</li>
+                <li><strong>Machine Learning (ML) Studio:</strong> .</li>
             </ul>
         </div>
         """,unsafe_allow_html=True,) 
@@ -140,18 +144,50 @@ if page == "ml_studio":
     st.divider()
 
     st.markdown("""
-<div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-    <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-        ML Studio
-    </a>
-    <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
-        (click the above link for more details)
-    </p>
-</div>
-    """, unsafe_allow_html=True)
+        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+                ML Studio
+            </a>
+            <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
+                (click the above link for more details)
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    
 #---------------------------------------------------------------------------------------------------------------------------------    
+if page == "pdf_playground":
+    
+    st.divider()
+
+    st.markdown("""
+        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <a href="https://pdf_playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+                PDF Playground
+            </a>
+            <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
+                (click the above link for more details)
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+#--------------------------------------------------------------------------------------------------------------------------------- 
+if page == "image_playground":
+    
+    st.divider()
+
+    st.markdown("""
+        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <a href="https://imageplayground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+                Image Playground
+            </a>
+            <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
+                (click the above link for more details)
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+#--------------------------------------------------------------------------------------------------------------------------------- 
+
 if page == "web_scapper":
     
     #st.divider()
