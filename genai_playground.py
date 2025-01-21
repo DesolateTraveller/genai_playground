@@ -99,10 +99,10 @@ with col2:
         st.session_state.current_page = "web_scapper"
 with col3:
     if st.button("📝 **Text Extracter**",use_container_width=True):
-        st.session_state.current_page = "web_scapper"
+        st.session_state.current_page = "text_extracter"
 with col4:
     if st.button("💬 **Chatbot**",use_container_width=True):
-        st.session_state.current_page = "web_scapper"
+        st.session_state.current_page = "chatbot"
         
 page = st.session_state.current_page 
 
@@ -110,8 +110,56 @@ page = st.session_state.current_page
 if page == "Welcome":
     
     st.divider()
-  
+
+    st.markdown("""
+        <div style="background-color: #F0F8FF; padding: 20px; border-radius: 10px; text-align: center; max-width: 800px; margin: 0 auto;">
+            <h5 style="color: #6495ED;">Welcome to the App</h5>
+            <p style="color: #4B4B4B;">
+                click the button above to access different sections and explore the following features
+            </p>
+            <ul style="color: #4B4B4B; text-align: left; margin-left: 20px; display: inline-block;">
+                <li><strong>Home:</strong> Understand the project overview and get started with the app.</li>
+                <li><strong>Analysis:</strong> Upload your data and explore step-by-step analytical tools.</li>
+            </ul>
+        </div>
+        """,unsafe_allow_html=True,) 
+    
 #---------------------------------------------------------------------------------------------------------------------------------
 if page == "Home" :  
 
+    st.divider()
+
+#---------------------------------------------------------------------------------------------------------------------------------    
+if page == "web_scapper":
+    
+    st.divider()
+    
+    st.markdown(
+            """
+            <style>
+                .centered-info {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                font-size: 15px;
+                color: #007BFF; 
+                padding: 5px;
+                background-color: #E8F4FF; 
+                border-radius: 5px;
+                border: 1px solid #007BFF;
+                margin-top: 5px;
+                }
+            </style>
+            """,unsafe_allow_html=True,)
+    st.markdown('<div class="centered-info"><span style="margin-left: 10px;">Inputs</span></div>',unsafe_allow_html=True,)
+    
+#---------------------------------------------------------------------------------------------------------------------------------    
+if page == "text_extracter":
+    
+    st.divider()
+    
+#---------------------------------------------------------------------------------------------------------------------------------    
+elif page == "chatbot":
+    
     st.divider()
