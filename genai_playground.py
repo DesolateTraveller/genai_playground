@@ -95,7 +95,7 @@ with col1:
     if st.button("🏠 **Home**",use_container_width=True):
         st.session_state.current_page = "Home"
 with col2:
-    if st.button("🏠 **ML Studio**",use_container_width=True):
+    if st.button("📈 **ML Studio**",use_container_width=True):
         st.session_state.current_page = "ml_studio" 
 with col3:
     if st.button("📕 **PDF Playground**",use_container_width=True):
