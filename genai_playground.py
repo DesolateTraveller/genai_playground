@@ -5,167 +5,79 @@ import streamlit as st
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Import Libraries
 #---------------------------------------------------------------------------------------------------------------------------------
-import io
-import os
-import json
-import time
-import base64
-import tempfile
-import requests
-import warnings
-from PIL import Image
-from random import randint
-from io import BytesIO
-warnings.filterwarnings("ignore")
-#----------------------------------------
-#import cv2
-import PyPDF2
-#import fitz
-import pdf2image
-#import docx
-import docx2txt
-#from docx import Document
-from pptx import Presentation
-import pytesseract
-from pytesseract import Output, TesseractError
-#----------------------------------------
-import openai
-#
 
+#----------------------------------------
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+#----------------------------------------
+from PIL import Image
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Title and description for your Streamlit app
 #---------------------------------------------------------------------------------------------------------------------------------
-#import custom_style()
-st.set_page_config(page_title="Digi-e",
+st.set_page_config(page_title="Digi-e | v0.1",
+                   page_icon='https://www.clariant.com/images/clariant-logo-small.svg',
                    layout="wide",
-                   #page_icon=               
-                   initial_sidebar_state="collapsed")
+                   initial_sidebar_state="collapsed",)
+#---------------------------------------
+#st.title(f""":rainbow[MegaMax | Activity Guiding Tool]""")
+st.markdown(
+    """
+    <style>
+    .title {
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        background: linear-gradient(to left, red, orange, blue, indigo, violet);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    </style>
+    <div class="title">Digi-e | Digital & Generative AI Playground</div>
+    """,
+    unsafe_allow_html=True
+)
 #----------------------------------------
-st.title(f""":rainbow[Digi-e | v0.1]""")
-st.markdown('Created by | <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a>', 
-            unsafe_allow_html=True)
-st.info('**Disclaimer : :blue[Thank you for visiting the app] | Unauthorized uses or copying of the app is strictly prohibited | Click the :blue[sidebar] to follow the instructions to start the applications.**', icon="ℹ️")
+
+st.markdown("""
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #F9F9FB;
+        text-align: center;
+        padding: 5px;
+        font-size: 15px;
+        color: #333;
+        z-index: 100;
+    }
+    .footer p {
+        margin: 0;
+    }
+    .footer .highlight {
+        font-weight: bold;
+        color: blue;
+    }
+    </style>
+
+    <div class="footer">
+        <p>© 2025 | Created by : <span class="highlight">Avijit Chakraborty</span> | Prepared by: <a href="mailto:avijit.mba18@gmail.com">Avijit Chakraborty</a></p> <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span>
+    </div>
+    """,
+    unsafe_allow_html=True)
+
 #----------------------------------------
-# Set the background image
-st.divider()
+#st.divider()
+#----------------------------------------
 
 #---------------------------------------------------------------------------------------------------------------------------------
-### LLM Hyperparameters
+### knowledge 
 #---------------------------------------------------------------------------------------------------------------------------------
 
-#stats_expander = st.sidebar.expander("**:blue[LLM HyperParameters]**", expanded=False)
-#with stats_expander: 
-with st.sidebar.popover("**:blue[LLM HyperParameters]**", help="Tune the hyperparameters whenever required"):  
-    llm_model = st.selectbox("**Select LLM**", ["llama3:instruct","anthropic.claude-v2:1","amazon.titan-text-express-v1","ai21.j2-ultra-v1","anthropic.claude-3-sonnet-20240229-v1:0"])
-    max_tokens = st.number_input("**Max Tokens**", value=250)
-    temperature= st.number_input(label="**Temperature (randomness)**",step=.1,format="%.2f", value=0.7)
-    top_p= st.number_input(label="**top_p (cumulative probability)**",step=.01,format="%.2f", value=0.9)
-    top_k= st.number_input(label="**top_k (top k most probable tokens)**",step=10, value=250)                                  
-    chunk_size= st.number_input(label="**chunk_size (managable segments)**",step=100, value=10000) 
-    chunk_overlap= st.number_input(label="**chunk_overlap (overlap between chunks)**",step=100, value=1000) 
-
-#openai.api_key = 'sk-proj-xvqhdaixDa0QtfXJxzcOT3BlbkFJjn691lYWMU2A9In7192C'
 
 #---------------------------------------------------------------------------------------------------------------------------------
-### Main Functions
+### Functions & Definitions
 #---------------------------------------------------------------------------------------------------------------------------------
-
-## Pdf Extraction
-
-@st.cache_data(ttl="2h")
-def extract_text_from_pdf(uploaded_file):
-    try:
-        # Open the PDF file
-        pdf_reader = PyPDF2.PdfReader(uploaded_file)
-        
-        # Extract text from each page
-        text = ""
-        for page in pdf_reader.pages:
-            text += page.extract_text()
-        
-        return text
-    except Exception as e:
-        st.error(f"Error occurred while extracting text from PDF: {e}")
-        return None
-    
-@st.cache_data(ttl="2h")
-def extract_text_from_pdf_s3(pdf_bytes):
-    pdf_file = BytesIO(pdf_bytes)
-    text = ""
-    with pdf_file as f:
-        pdf_reader = PyPDF2.PdfReader(f)
-        for page in pdf_reader.pages:
-            text += page.extract_text()
-    return text
-
-#-------------------------------------------------------------------
-
-## PPT Extraction
-
-@st.cache_data(ttl="2h")
-def extract_text_from_ppt(ppt_file):
-    text = ""
-    prs = Presentation(ppt_file)
-    for slide in prs.slides:
-        for shape in slide.shapes:
-            if hasattr(shape, "text"):
-                text += shape.text + "\n"
-    return text
-#---------------------------------------------------------------------------------------------------------------------------------
-### Main App
-#---------------------------------------------------------------------------------------------------------------------------------
-
-st.sidebar.header("Input", divider='blue')
-st.sidebar.info('Please choose from the following options and follow the instructions to start the application.', icon="ℹ️")
-action_type = st.sidebar.radio("**:blue[Choose the action]**", ["Q&A", "Chatbot"])
-st.sidebar.divider()
-
-#-----------------------------------
-
-if action_type == "Q&A" :
-    
-    data_source = st.sidebar.radio("**:blue[Select the file type]**", ["PDF","PPT","Word","Excel","Image","Video","Email","Webpage"])
-    st.sidebar.divider() 
-
-#-----------------------------------
-### PDF
-#-----------------------------------
-
-if data_source == "PDF" :
-    
-    uploaded_file = st.file_uploader("**:blue[Choose a PDF file]**", type=["pdf"])
-    st.sidebar.divider()
-
-    if uploaded_file is not None:
-        with st.spinner(text="In progress..."):
-            text = extract_text_from_pdf(uploaded_file)
-
-            stats_expander = st.expander("**:blue[Information]**", expanded=False)
-            with stats_expander:
-
-                txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
-                st.info(f'Total **:blue[{len(txt)} characters.]**')
-
-#-----------------------------------
-### PPT
-#-----------------------------------
-
-if data_source == "PPT" :
-    
-    uploaded_file = st.file_uploader("**:blue[Choose a PPT file]**", type=["pdf"])
-    st.sidebar.divider()
-
-    if uploaded_file is not None:
-        with st.spinner(text="In progress..."):
-            text = extract_text_from_ppt(uploaded_file)
-
-            stats_expander = st.expander("**:blue[Information]**", expanded=False)
-            with stats_expander:
-
-                txt = st.text_area(":blue[Extracted output from uploaded file]", value=text, height=500)
-                st.info(f'Total **:blue[{len(txt)} characters.]**')
-
-#-----------------------------------
-### Webpage
-#-----------------------------------
-
