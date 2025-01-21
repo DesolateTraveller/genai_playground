@@ -17,7 +17,7 @@ from PIL import Image
 ### Title and description for your Streamlit app
 #---------------------------------------------------------------------------------------------------------------------------------
 st.set_page_config(page_title="Digi-e | v0.1",
-                   page_icon='https://www.clariant.com/images/clariant-logo-small.svg',
+                   page_icon="💻"
                    layout="wide",
                    initial_sidebar_state="collapsed",)
 #---------------------------------------
