@@ -161,7 +161,7 @@ if page == "pdf_playground":
 
     st.markdown("""
         <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://pdf_playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+            <a href="https://pdf-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
                 PDF Playground
             </a>
             <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
@@ -177,7 +177,7 @@ if page == "image_playground":
 
     st.markdown("""
         <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://imageplayground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+            <a href="https://image-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
                 Image Playground
             </a>
             <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
