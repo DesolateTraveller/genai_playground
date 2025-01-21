@@ -132,7 +132,7 @@ if page == "Home" :
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "web_scapper":
     
-    st.divider()
+    #st.divider()
     
     st.markdown(
             """
@@ -152,7 +152,7 @@ if page == "web_scapper":
                 }
             </style>
             """,unsafe_allow_html=True,)
-    st.markdown('<div class="centered-info"><span style="margin-left: 10px;">Inputs</span></div>',unsafe_allow_html=True,)
+    st.markdown('<div class="centered-info"><span style="margin-left: 10px;">This app helps user to extract the information from a webpage by uploading the links</span></div>',unsafe_allow_html=True,)
     
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "text_extracter":
