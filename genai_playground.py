@@ -98,10 +98,10 @@ with col2:
     if st.button("🏠 **ML Studio**",use_container_width=True):
         st.session_state.current_page = "ml_studio" 
 with col3:
-    if st.button("🏠 **PDF Playground**",use_container_width=True):
+    if st.button("📕 **PDF Playground**",use_container_width=True):
         st.session_state.current_page = "pdf_playground"
 with col4:
-    if st.button("🏠 **Image_playground**",use_container_width=True):
+    if st.button("🖼️ **Image Playground**",use_container_width=True):
         st.session_state.current_page = "image_playground"              
 with col5:
     if st.button("🌐 **Web Scapper**",use_container_width=True):
