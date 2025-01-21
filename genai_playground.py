@@ -140,18 +140,19 @@ if page == "ml_studio":
     st.divider()
 
     st.markdown("""
-    <div style="background-color: #E6F7FF; padding: 25px; border-radius: 15px; text-align: center; max-width: 850px; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-        <h3 style="color: #0056D2; font-family: Arial, sans-serif; margin-bottom: 15px;">🎉 Welcome to the App!</h3>
-            <ul style="color: #333; text-align: left; margin: 0; padding: 0; list-style-type: none; font-size: 16px; line-height: 1.8; display: inline-block;">
-                <li>Use the following link for more details:</li>
-                    <li style="margin-top: 10px;">
-                    <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; text-decoration: none;">
-                    https://ml-studio.streamlit.app/
-                    </a>
-                </li>
-            </ul>
-    </div>
+<div style="background-color: #E6F7FF; padding: 25px; border-radius: 15px; text-align: center; max-width: 850px; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+    <h3 style="color: #0056D2; font-family: Arial, sans-serif; margin-bottom: 15px;">🎉 Welcome to the App!</h3>
+    <ul style="color: #333; text-align: left; margin: 0; padding: 0; list-style-type: none; font-size: 16px; line-height: 1.8; display: inline-block;">
+        <li>Use the following link for more details:</li>
+        <li style="margin-top: 10px;">
+            <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; text-decoration: none;">
+                ML Studio
+            </a>
+        </li>
+    </ul>
+</div>
     """, unsafe_allow_html=True)
+
     
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "web_scapper":
