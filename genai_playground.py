@@ -33,7 +33,7 @@ st.markdown(
         -webkit-text-fill-color: transparent;
     }
     </style>
-    <div class="title">Digi-e | Digital & Generative AI Playground</div>
+    <div class="title">Digital & Generative AI Playground</div>
     """,
     unsafe_allow_html=True
 )
