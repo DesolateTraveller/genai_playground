@@ -90,17 +90,26 @@ if "current_page" not in st.session_state:
 
 #st.sidebar.subheader("**:blue[Contents]**",divider='blue')
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 with col1:
     if st.button("🏠 **Home**",use_container_width=True):
         st.session_state.current_page = "Home"
 with col2:
+    if st.button("🏠 **ML Studio**",use_container_width=True):
+        st.session_state.current_page = "ml_studio" 
+with col3:
+    if st.button("🏠 **PDF Playground**",use_container_width=True):
+        st.session_state.current_page = "pdf_playground"
+with col4:
+    if st.button("🏠 **Image_playground**",use_container_width=True):
+        st.session_state.current_page = "image_playground"              
+with col5:
     if st.button("🌐 **Web Scapper**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
-with col3:
+with col6:
     if st.button("📝 **Text Extracter**",use_container_width=True):
         st.session_state.current_page = "text_extracter"
-with col4:
+with col7:
     if st.button("💬 **Chatbot**",use_container_width=True):
         st.session_state.current_page = "chatbot"
         
