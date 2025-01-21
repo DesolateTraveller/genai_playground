@@ -98,10 +98,20 @@ with col2:
     if st.button("🖥️ **Web Scapper**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
 with col3:
-    if st.button("🖥️ **Web Scapper**",use_container_width=True):
+    if st.button("🖥️ **Text Extracter**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
 with col4:
-    if st.button("🖥️ **Web Scapper**",use_container_width=True):
+    if st.button("🖥️ **Chatbot**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
         
 page = st.session_state.current_page 
+
+#---------------------------------------------------------------------------------------------------------------------------------
+if page == "Welcome":
+    
+    st.divider()
+  
+#---------------------------------------------------------------------------------------------------------------------------------
+if page == "Home" :  
+
+    st.divider()
