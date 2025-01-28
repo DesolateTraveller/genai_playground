@@ -56,7 +56,7 @@ st.markdown("""
     .footer p {
         margin: 0;
     }
-    .footer .highlight {
+    .footer.highlight {
         font-weight: bold;
         color: blue;
     }
@@ -107,7 +107,7 @@ with col5:
     if st.button("🌐 **Web Scapper**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
 with col6:
-    if st.button("📝 **Text Extracter**",use_container_width=True):
+    if st.button("📝 **GenAI Applications**",use_container_width=True):
         st.session_state.current_page = "text_extracter"
 with col7:
     if st.button("💬 **Chatbot**",use_container_width=True):
@@ -120,19 +120,145 @@ if page == "Welcome":
     
     st.divider()
 
-    st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 25px; border-radius: 15px; text-align: center; max-width: 100%; margin: 20px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <h5 style="color: #6495ED;">Welcome to the App</h5>
-            <p style="color: #4B4B4B;">
-                click the button above to access different sections and explore the following features
-            </p>            
-            <ul style="color: #4B4B4B; text-align: left; margin-left: 20px; display: inline-block;">
-                <li><strong>Home:</strong> Understand the project overview and get started with the app.</li>
-                <li><strong>Machine Learning (ML) Studio:</strong> .</li>
-            </ul>
+    st.markdown(
+    """
+    <style>
+        .centered-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 15px;
+            color: #007BFF; 
+            padding: 10px;
+            background-color: #E8F4FF; 
+            border-radius: 5px;
+            border: 1px solid #007BFF;
+            margin-top: 5px;
+        }
+        .title-container {
+            padding: 15px;
+            background-color: #E6F5FF;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            margin-top: 15px; /* Added spacing here */
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1em;
+            color: #0056d2;
+        }
+        .aplication-container {
+            padding: 10px;
+            background-color: #E6F5FF;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .aplication-container:hover {
+            background-color: #e0e0e0;
+        }
+        .aplication-name {
+            font-weight: bold; 
+            color: #0073e6; 
+            font-size: 1.2em;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .aplication-description {
+            font-size: 1em;
+            color: #555;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+    """,unsafe_allow_html=True,)
+    st.markdown('<div class="centered-info"><span style="margin-left: 10px;">Click the button above to access different sections and explore the following features</span></div>',unsafe_allow_html=True,)
+
+    aplications = [
+    {
+        "name": "Analytical Solutions", 
+        "description": "Toggle this to access powerful data analysis tools"
+    },
+    {
+        "name": "Anomaly Detection", 
+        "description": "Detect irregular patterns and deviations in your data."
+    },        
+    {
+        "name": "Forecast the Future", 
+        "description": "Use predictive modeling for future insights."
+    },
+    {
+        "name": "GenAI Prompting", 
+        "description": "Experiment with Generative AI for innovative solutions."
+    } ]
+
+    col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+
+    with col1:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>Home</strong></div>
+            <iv class="aplication-description">Understand the project overview and get started with the app.</div>
         </div>
-        """,unsafe_allow_html=True,) 
-    
+        """,unsafe_allow_html=True,)
+
+    with col2:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>ML Studio</strong></div>
+            <div class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)
+
+    with col3:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>PDF Playground</strong></div>
+            <iv class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)
+
+    with col4:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>Image Playground</strong></div>
+            <div class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)    
+
+    with col5:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>Web Scapper</strong></div>
+            <div class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)
+
+    with col6:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>GenAI Applications</strong></div>
+            <iv class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)
+
+    with col7:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>Chatbot</strong></div>
+            <div class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)    
 #---------------------------------------------------------------------------------------------------------------------------------
 if page == "Home" :  
 
@@ -148,7 +274,7 @@ if page == "ml_studio":
             <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
                 ML Studio
             </a>
-            <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
+            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
                 (click the above link for more details)
             </p>
         </div>
@@ -164,7 +290,7 @@ if page == "pdf_playground":
             <a href="https://pdf-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
                 PDF Playground
             </a>
-            <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
+            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
                 (click the above link for more details)
             </p>
         </div>
@@ -180,7 +306,7 @@ if page == "image_playground":
             <a href="https://image-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
                 Image Playground
             </a>
-            <p style="color: #333; font-size: 16px; margin-top: 0; margin-bottom: 10px;">
+            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
                 (click the above link for more details)
             </p>
         </div>
