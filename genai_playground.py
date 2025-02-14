@@ -96,14 +96,14 @@ with col1:
     if st.button("📊 **Statistics Playground**",use_container_width=True):
         st.session_state.current_page = "stat_playground"
 with col2:
-    if st.button("📈 **ML Studio**",use_container_width=True):
-        st.session_state.current_page = "ml_studio" 
-with col3:
     if st.button("📘 **PDF Playground**",use_container_width=True):
         st.session_state.current_page = "pdf_playground"
-with col4:
+with col3:
     if st.button("🖼️ **Image Playground**",use_container_width=True):
-        st.session_state.current_page = "image_playground"              
+        st.session_state.current_page = "image_playground" 
+with col4:
+    if st.button("📈 **ML Studio**",use_container_width=True):
+        st.session_state.current_page = "ml_studio"              
 with col5:
     if st.button("🌐 **Web Scapper**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
@@ -211,21 +211,12 @@ if page == "Welcome":
         st.markdown(
         """
         <div class="aplication-container">
-            <div class="aplication-name"><strong>ML Studio</strong></div>
-            <div class="aplication-description">xx</div>
-        </div>
-        """,unsafe_allow_html=True,)
-
-    with col3:
-        st.markdown(
-        """
-        <div class="aplication-container">
             <div class="aplication-name"><strong>PDF Playground</strong></div>
             <iv class="aplication-description">xx</div>
         </div>
         """,unsafe_allow_html=True,)
 
-    with col4:
+    with col3:
         st.markdown(
         """
         <div class="aplication-container">
@@ -234,6 +225,15 @@ if page == "Welcome":
         </div>
         """,unsafe_allow_html=True,)    
 
+    with col4:
+        st.markdown(
+        """
+        <div class="aplication-container">
+            <div class="aplication-name"><strong>ML Studio</strong></div>
+            <div class="aplication-description">xx</div>
+        </div>
+        """,unsafe_allow_html=True,)
+        
     with col5:
         st.markdown(
         """
@@ -268,22 +268,7 @@ if page == "stat_playground":
     st.markdown("""
         <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
             <a href="https://stat-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                PDF Playground
-            </a>
-            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
-                (click the above link for more details)
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-#---------------------------------------------------------------------------------------------------------------------------------
-if page == "ml_studio":
-    
-    st.divider()
-
-    st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                ML Studio
+                Statistics Playground
             </a>
             <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
                 (click the above link for more details)
@@ -314,6 +299,21 @@ if page == "image_playground":
         <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
             <a href="https://image-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
                 Image Playground
+            </a>
+            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
+                (click the above link for more details)
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+#---------------------------------------------------------------------------------------------------------------------------------
+if page == "ml_studio":
+    
+    st.divider()
+
+    st.markdown("""
+        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+                ML Studio
             </a>
             <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
                 (click the above link for more details)
