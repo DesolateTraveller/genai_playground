@@ -63,7 +63,8 @@ st.markdown("""
     </style>
 
     <div class="footer">
-        <p>© 2025 | Created by : <span class="highlight">Avijit Chakraborty</span> | <a href="mailto:avijit.mba18@gmail.com"> 📩 </a></p> <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span>
+        <p>© 2025 | Created by : <span class="highlight">Avijit Chakraborty</span> | <a href="mailto:avijit.mba18@gmail.com"> 📩 </a></p> 
+        <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span>
     </div>
     """,
     unsafe_allow_html=True)
@@ -92,8 +93,8 @@ if "current_page" not in st.session_state:
 
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 with col1:
-    if st.button("🏠 **Home**",use_container_width=True):
-        st.session_state.current_page = "Home"
+    if st.button("📊 **Statistics Playground**",use_container_width=True):
+        st.session_state.current_page = "stat_playground"
 with col2:
     if st.button("📈 **ML Studio**",use_container_width=True):
         st.session_state.current_page = "ml_studio" 
@@ -201,8 +202,8 @@ if page == "Welcome":
         st.markdown(
         """
         <div class="aplication-container">
-            <div class="aplication-name"><strong>Home</strong></div>
-            <iv class="aplication-description">Understand the project overview and get started with the app.</div>
+            <div class="aplication-name"><strong>Statistics Playground</strong></div>
+            <iv class="aplication-description">xx</div>
         </div>
         """,unsafe_allow_html=True,)
 
@@ -260,10 +261,20 @@ if page == "Welcome":
         </div>
         """,unsafe_allow_html=True,)    
 #---------------------------------------------------------------------------------------------------------------------------------
-if page == "Home" :  
-
+if page == "stat_playground":
+    
     st.divider()
 
+    st.markdown("""
+        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <a href="https://stat-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+                PDF Playground
+            </a>
+            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
+                (click the above link for more details)
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 #---------------------------------------------------------------------------------------------------------------------------------
 if page == "ml_studio":
     
@@ -279,7 +290,6 @@ if page == "ml_studio":
             </p>
         </div>
         """, unsafe_allow_html=True)
-
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "pdf_playground":
     
@@ -295,7 +305,6 @@ if page == "pdf_playground":
             </p>
         </div>
         """, unsafe_allow_html=True)
-
 #--------------------------------------------------------------------------------------------------------------------------------- 
 if page == "image_playground":
     
@@ -311,9 +320,7 @@ if page == "image_playground":
             </p>
         </div>
         """, unsafe_allow_html=True)
-
 #--------------------------------------------------------------------------------------------------------------------------------- 
-
 if page == "web_scapper":
     
     #st.divider()
