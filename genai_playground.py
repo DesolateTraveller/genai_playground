@@ -213,8 +213,9 @@ if page == "Welcome":
             <div class="aplication-name"><strong>Statistics Playground</strong></div>
             <iv class="aplication-description">
             <br>
-            1. It provides an intuitive, user-friendly interface for comprehensive statistical analysis and visualization.<br>
-            2. It enables users to investigate relationships within datasets.
+            It provides an intuitive, user-friendly interface for comprehensive statistical analysis and visualization.<br>
+            <br>
+            It enables users to investigate relationships within datasets.
             </div>       
         </div>
         """,unsafe_allow_html=True,)
@@ -226,7 +227,7 @@ if page == "Welcome":
             <div class="aplication-name"><strong>PDF Playground</strong></div>
             <iv class="aplication-description">
             <br>
-            1. It is an easy-to-use, open-source PDF application to preview and extract content and metadata from PDFs, add or remove passwords, modify, merge, convert and compress PDFs.<br>
+            It is an easy-to-use, open-source PDF application to preview and extract content and metadata from PDFs, add or remove passwords, modify, merge, convert and compress PDFs.<br>
             </div
         </div>
         """,unsafe_allow_html=True,)
@@ -236,7 +237,10 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>Image Playground</strong></div>
-            <div class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            It is a lightweight image-processing Streamlit app that supports the following operations: Upload image, Crop Remove background ,Mirror ,Convert to grayscale or black and white ,Rotate ,Change brightness, saturation, contrast, sharpness.<br>
+            </div
         </div>
         """,unsafe_allow_html=True,)    
 
@@ -245,7 +249,10 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>ML Studio</strong></div>
-            <div class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            It is a lightweight Machine Learning (ML) streamlit app that help to analyse different types machine learning problems.<br>
+            </div
         </div>
         """,unsafe_allow_html=True,)
         
