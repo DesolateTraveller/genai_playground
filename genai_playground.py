@@ -40,8 +40,8 @@ st.markdown(
         -webkit-text-fill-color: transparent;
     }
     </style>
-    <div class="title-large">Digital & Generative AI Playground</div>
-    <div class="title-small">Version : 0.1</div>
+    <div class="title-large">Digital | Analytical | Generative AI </div>
+    <div class="title-small">Playground | v0.1</div>
     """,
     unsafe_allow_html=True
 )
@@ -116,8 +116,8 @@ with col5:
     if st.button("🌐 **Web Scapper**",use_container_width=True):
         st.session_state.current_page = "web_scapper"
 with col6:
-    if st.button("📝 **GenAI Applications**",use_container_width=True):
-        st.session_state.current_page = "text_extracter"
+    if st.button("📝 **GenAI Studio**",use_container_width=True):
+        st.session_state.current_page = "genai"
 with col7:
     if st.button("💬 **Chatbot**",use_container_width=True):
         st.session_state.current_page = "chatbot"
@@ -254,7 +254,7 @@ if page == "Welcome":
         st.markdown(
         """
         <div class="aplication-container">
-            <div class="aplication-name"><strong>GenAI Applications</strong></div>
+            <div class="aplication-name"><strong>GenAI Studio</strong></div>
             <iv class="aplication-description">
             <br>
             It is a streamlit app that helps user to execute different GenAI applications like summarization, Q&A, generation, translation, convertion etc.<br>
@@ -357,12 +357,10 @@ if page == "web_scapper":
             </style>
             """,unsafe_allow_html=True,)
     st.markdown('<div class="centered-info"><span style="margin-left: 10px;">This app helps user to extract the information from a webpage by uploading the links</span></div>',unsafe_allow_html=True,)
-    
 #---------------------------------------------------------------------------------------------------------------------------------    
-if page == "text_extracter":
+if page == "genai":
     
     st.divider()
-    
 #---------------------------------------------------------------------------------------------------------------------------------    
 elif page == "chatbot":
     
