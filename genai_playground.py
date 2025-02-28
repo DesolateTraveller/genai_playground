@@ -24,16 +24,24 @@ st.set_page_config(page_title="Digi-e | v0.1",
 st.markdown(
     """
     <style>
-    .title {
+    .title-large {
         text-align: center;
-        font-size: 40px;
+        font-size: 35px;
         font-weight: bold;
         background: linear-gradient(to left, red, orange, blue, indigo, violet);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    .title-small {
+        text-align: center;
+        font-size: 20px;
+        background: linear-gradient(to left, red, orange, blue, indigo, violet);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
     </style>
-    <div class="title">Digital & Generative AI Playground</div>
+    <div class="title-large">Digital & Generative AI Playground</div>
+    <div class="title-small">Version : 0.1</div>
     """,
     unsafe_allow_html=True
 )
@@ -203,7 +211,11 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>Statistics Playground</strong></div>
-            <iv class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            1. It provides an intuitive, user-friendly interface for comprehensive statistical analysis and visualization.<br>
+            2. It enables users to investigate relationships within datasets.
+            </div>       
         </div>
         """,unsafe_allow_html=True,)
 
@@ -212,7 +224,10 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>PDF Playground</strong></div>
-            <iv class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            1. It is an easy-to-use, open-source PDF application to preview and extract content and metadata from PDFs, add or remove passwords, modify, merge, convert and compress PDFs.<br>
+            </div
         </div>
         """,unsafe_allow_html=True,)
 
