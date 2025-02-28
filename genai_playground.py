@@ -47,32 +47,32 @@ st.markdown(
 )
 #----------------------------------------
 
-st.markdown("""
+st.markdown(
+    """
     <style>
     .footer {
         position: fixed;
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color: #F9F9FB;
+        background-color: #F0F2F6;
         text-align: center;
-        padding: 5px;
-        font-size: 15px;
+        padding: 10px;
+        font-size: 14px;
         color: #333;
         z-index: 100;
     }
     .footer p {
         margin: 0;
     }
-    .footer.highlight {
+    .footer .highlight {
         font-weight: bold;
         color: blue;
     }
     </style>
 
     <div class="footer">
-        <p>© 2025 | Created by : <span class="highlight">Avijit Chakraborty</span> | <a href="mailto:avijit.mba18@gmail.com"> 📩 </a></p> 
-        <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span>
+        <p>© 2025 | Created by : <span class="highlight">Avijit Chakraborty</span> | <a href="mailto:avijit.mba18@gmail.com"> 📩 </a></p> <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span>
     </div>
     """,
     unsafe_allow_html=True)
@@ -336,27 +336,18 @@ if page == "ml_studio":
 #--------------------------------------------------------------------------------------------------------------------------------- 
 if page == "web_scapper":
     
-    #st.divider()
+    st.divider()
     
-    st.markdown(
-            """
-            <style>
-                .centered-info {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-weight: bold;
-                font-size: 15px;
-                color: #007BFF; 
-                padding: 5px;
-                background-color: #E8F4FF; 
-                border-radius: 5px;
-                border: 1px solid #007BFF;
-                margin-top: 5px;
-                }
-            </style>
-            """,unsafe_allow_html=True,)
-    st.markdown('<div class="centered-info"><span style="margin-left: 10px;">This app helps user to extract the information from a webpage by uploading the links</span></div>',unsafe_allow_html=True,)
+    st.markdown("""
+        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+            <a href="https://web-scrapper.streamlit.app//" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
+                Web Scrapper
+            </a>
+            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
+                (click the above link for more details)
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 #---------------------------------------------------------------------------------------------------------------------------------    
 if page == "genai":
     
