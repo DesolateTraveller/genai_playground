@@ -186,24 +186,6 @@ if page == "Welcome":
     """,unsafe_allow_html=True,)
     st.markdown('<div class="centered-info"><span style="margin-left: 10px;">Click the button above to access different sections and explore the following features</span></div>',unsafe_allow_html=True,)
 
-    aplications = [
-    {
-        "name": "Analytical Solutions", 
-        "description": "Toggle this to access powerful data analysis tools"
-    },
-    {
-        "name": "Anomaly Detection", 
-        "description": "Detect irregular patterns and deviations in your data."
-    },        
-    {
-        "name": "Forecast the Future", 
-        "description": "Use predictive modeling for future insights."
-    },
-    {
-        "name": "GenAI Prompting", 
-        "description": "Experiment with Generative AI for innovative solutions."
-    } ]
-
     col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 
     with col1:
@@ -228,7 +210,7 @@ if page == "Welcome":
             <iv class="aplication-description">
             <br>
             It is an easy-to-use, open-source PDF application to preview and extract content and metadata from PDFs, add or remove passwords, modify, merge, convert and compress PDFs.<br>
-            </div
+            </div>
         </div>
         """,unsafe_allow_html=True,)
 
@@ -240,7 +222,7 @@ if page == "Welcome":
             <iv class="aplication-description">
             <br>
             It is a lightweight image-processing Streamlit app that supports the following operations: Upload image, Crop Remove background ,Mirror ,Convert to grayscale or black and white ,Rotate ,Change brightness, saturation, contrast, sharpness.<br>
-            </div
+            </div>
         </div>
         """,unsafe_allow_html=True,)    
 
@@ -252,7 +234,7 @@ if page == "Welcome":
             <iv class="aplication-description">
             <br>
             It is a lightweight Machine Learning (ML) streamlit app that help to analyse different types machine learning problems.<br>
-            </div
+            </div>
         </div>
         """,unsafe_allow_html=True,)
         
@@ -261,7 +243,10 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>Web Scapper</strong></div>
-            <div class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            It is a streamlit app that helps user to extract the information from a webpage by uploading the links.<br>
+            </div>
         </div>
         """,unsafe_allow_html=True,)
 
@@ -270,7 +255,10 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>GenAI Applications</strong></div>
-            <iv class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            It is a streamlit app that helps user to execute different GenAI applications like summarization, Q&A, generation, translation, convertion etc.<br>
+            </div>
         </div>
         """,unsafe_allow_html=True,)
 
@@ -279,7 +267,10 @@ if page == "Welcome":
         """
         <div class="aplication-container">
             <div class="aplication-name"><strong>Chatbot</strong></div>
-            <div class="aplication-description">xx</div>
+            <iv class="aplication-description">
+            <br>
+            It is a streamlit app that helps user access the chatbot application.<br>
+            </div>
         </div>
         """,unsafe_allow_html=True,)    
 #---------------------------------------------------------------------------------------------------------------------------------
