@@ -2,6 +2,7 @@
 ### Authenticator
 #---------------------------------------------------------------------------------------------------------------------------------
 import streamlit as st
+#from streamlit_navigation_bar import st_navbar
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Import Libraries
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -39,14 +40,28 @@ st.markdown(
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    .version-badge {
+        text-align: center;
+        display: inline-block;
+        background: linear-gradient(120deg, #0056b3, #0d4a96);
+        color: white;
+        padding: 2px 12px;
+        border-radius: 20px;
+        font-size: 1.15rem;
+        margin-top: 8px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
     </style>
-    <div class="title-large">Digital | Analytical | Generative AI </div>
-    <div class="title-small">Playground | v0.1</div>
+    <div style="text-align: center;">
+        <div class="title-large">Digital | Analytical | Generative AI</div>
+        <div class="version-badge"> v0.2 </div>
+    </div>
     """,
     unsafe_allow_html=True
 )
 #----------------------------------------
-
 st.markdown(
     """
     <style>
@@ -72,7 +87,7 @@ st.markdown(
     </style>
 
     <div class="footer">
-        <p>© 2025 | Created by : <span class="highlight">Avijit Chakraborty</span> | <a href="mailto:avijit.mba18@gmail.com"> 📩 </a></p> <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span>
+        <p>© 2026 | Created by : <span class="highlight">Avijit Chakraborty</span> <a href="mailto:avijit.mba18@gmail.com"> 📩 </a> | <span class="highlight">Thank you for visiting the app | Unauthorized uses or copying is strictly prohibited | For best view of the app, please zoom out the browser to 75%.</span> </p>
     </div>
     """,
     unsafe_allow_html=True)
@@ -82,9 +97,67 @@ st.markdown(
 #----------------------------------------
 
 #---------------------------------------------------------------------------------------------------------------------------------
-### knowledge 
+### CSS 
 #---------------------------------------------------------------------------------------------------------------------------------
-
+st.markdown("""
+<style>
+.clickable-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px 20px;
+    box-shadow: 0 6px 18px rgba(0, 30, 80, 0.09);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    border: 1px solid rgba(0, 86, 179, 0.08);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.clickable-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 30, 80, 0.18);
+    border-color: rgba(0, 86, 179, 0.25);
+}
+.clickable-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #0056b3, #4da6ff);
+}
+.clickable-card .card-icon {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    color: #0056b3;
+    font-weight: bold;
+}
+.clickable-card .card-title {
+    color: #004a96;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+.clickable-card .card-desc {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+</style>
+""", unsafe_allow_html=True)
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Functions & Definitions
@@ -93,266 +166,230 @@ st.markdown(
 #---------------------------------------------------------------------------------------------------------------------------------
 ### Main app
 #---------------------------------------------------------------------------------------------------------------------------------
+import streamlit as st
 
-if "current_page" not in st.session_state:
-    st.session_state.current_page = "Welcome"
+# ===== MAIN HEADER =====
+st.markdown("""
+<style>
+.banner {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 25px 0;
+    border: 1px solid rgba(0, 86, 179, 0.15);
+    text-align: center;
+    font-size: 1.15rem;
+    color: #0056b3;
+    font-weight: 600;
+}
+</style>
 
-#st.sidebar.subheader("**:blue[Contents]**",divider='blue')
+<div class="banner">
+    Click the cards below to access different sections and explore the following features
+</div>
+""", unsafe_allow_html=True)
 
+# ===== CLICKABLE CARDS IN SINGLE ROW =====
+st.markdown("""
+<style>
+.clickable-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px 20px;
+    box-shadow: 0 6px 18px rgba(0, 30, 80, 0.09);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    border: 1px solid rgba(0, 86, 179, 0.08);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.clickable-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 30, 80, 0.18);
+    border-color: rgba(0, 86, 179, 0.25);
+}
+.clickable-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #0056b3, #4da6ff);
+}
+.clickable-card .card-icon {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    color: #0056b3;
+    font-weight: bold;
+}
+.clickable-card .card-title {
+    color: #004a96;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+.clickable-card .card-desc {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}
+.card-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+.card-list li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+.card-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Create 7 columns for cards in a single row
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+
+# Card 1: Statistics Playground
 with col1:
-    if st.button("📊 **Statistics Playground**",use_container_width=True):
-        st.session_state.current_page = "stat_playground"
+    st.markdown("""
+    <a href="https://stat-playground.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">📊</div>
+            <h3 class="card-title">Statistics Playground</h3>
+            <ul class="card-list">
+                <li>Comprehensive statistical analysis</li>
+                <li>Data visualization tools</li>
+                <li>Investigate relationships within datasets</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# Card 2: PDF Playground
 with col2:
-    if st.button("📘 **PDF Playground**",use_container_width=True):
-        st.session_state.current_page = "pdf_playground"
+    st.markdown("""
+    <a href="https://pdf-playground.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">📘</div>
+            <h3 class="card-title">PDF Playground</h3>
+            <ul class="card-list">
+                <li>Preview and extract PDF content</li>
+                <li>Extract metadata from PDFs</li>
+                <li>Add or remove passwords</li>
+                <li>Modify, merge, convert PDFs</li>
+                <li>Compress PDF files</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# Card 3: Image Playground
 with col3:
-    if st.button("🖼️ **Image Playground**",use_container_width=True):
-        st.session_state.current_page = "image_playground" 
+    st.markdown("""
+    <a href="https://image-playground.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">🖼️</div>
+            <h3 class="card-title">Image Playground</h3>
+            <ul class="card-list">
+                <li>Upload and crop images</li>
+                <li>Remove background</li>
+                <li>Mirror and rotate images</li>
+                <li>Convert to grayscale or black & white</li>
+                <li>Adjust brightness, saturation, contrast</li>
+                <li>Modify sharpness</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# Card 4: ML Studio
 with col4:
-    if st.button("📈 **ML Studio**",use_container_width=True):
-        st.session_state.current_page = "ml_studio"              
+    st.markdown("""
+    <a href="https://ml-studio.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">📈</div>
+            <h3 class="card-title">ML Studio</h3>
+            <ul class="card-list">
+                <li>Lightweight ML application</li>
+                <li>Analyze different ML problems</li>
+                <li>Machine learning model training</li>
+                <li>Prediction and evaluation tools</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# Card 5: Web Scrapper
 with col5:
-    if st.button("🌐 **Web Scapper**",use_container_width=True):
-        st.session_state.current_page = "web_scapper"
+    st.markdown("""
+    <a href="https://web-scrapper.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">🌐</div>
+            <h3 class="card-title">Web Scrapper</h3>
+            <ul class="card-list">
+                <li>Extract information from webpages</li>
+                <li>Upload multiple links</li>
+                <li>Scrape structured data</li>
+                <li>Export scraped data</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# Card 6: GenAI Studio
 with col6:
-    if st.button("📝 **GenAI Studio**",use_container_width=True):
-        st.session_state.current_page = "genai"
+    st.markdown("""
+    <a href="#" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">📝</div>
+            <h3 class="card-title">GenAI Studio</h3>
+            <ul class="card-list">
+                <li>Text summarization</li>
+                <li>Question & Answer systems</li>
+                <li>Content generation</li>
+                <li>Language translation</li>
+                <li>Format conversion</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# Card 7: Chatbot
 with col7:
-    if st.button("💬 **Chatbot**",use_container_width=True):
-        st.session_state.current_page = "chatbot"
-        
-page = st.session_state.current_page 
-
-#---------------------------------------------------------------------------------------------------------------------------------
-if page == "Welcome":
-    
-    st.divider()
-
-    st.markdown(
-    """
-    <style>
-        .centered-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 15px;
-            color: #007BFF; 
-            padding: 10px;
-            background-color: #E8F4FF; 
-            border-radius: 5px;
-            border: 1px solid #007BFF;
-            margin-top: 5px;
-        }
-        .title-container {
-            padding: 15px;
-            background-color: #E6F5FF;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-            margin-top: 15px; /* Added spacing here */
-            text-align: center;
-            font-size: 1.1em;
-            line-height: 1em;
-            color: #0056d2;
-        }
-        .aplication-container {
-            padding: 10px;
-            background-color: #E6F5FF;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-            text-align: center;
-            margin-top: 15px;
-        }
-        .aplication-container:hover {
-            background-color: #e0e0e0;
-        }
-        .aplication-name {
-            font-weight: bold; 
-            color: #0073e6; 
-            font-size: 1.2em;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-        .aplication-description {
-            font-size: 1em;
-            color: #555;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-    </style>
-    """,unsafe_allow_html=True,)
-    st.markdown('<div class="centered-info"><span style="margin-left: 10px;">Click the button above to access different sections and explore the following features</span></div>',unsafe_allow_html=True,)
-
-    col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
-
-    with col1:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>Statistics Playground</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It provides an intuitive, user-friendly interface for comprehensive statistical analysis and visualization.<br>
-            <br>
-            It enables users to investigate relationships within datasets.
-            </div>       
-        </div>
-        """,unsafe_allow_html=True,)
-
-    with col2:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>PDF Playground</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It is an easy-to-use, open-source PDF application to preview and extract content and metadata from PDFs, add or remove passwords, modify, merge, convert and compress PDFs.<br>
-            </div>
-        </div>
-        """,unsafe_allow_html=True,)
-
-    with col3:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>Image Playground</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It is a lightweight image-processing Streamlit app that supports the following operations: Upload image, Crop Remove background ,Mirror ,Convert to grayscale or black and white ,Rotate ,Change brightness, saturation, contrast, sharpness.<br>
-            </div>
-        </div>
-        """,unsafe_allow_html=True,)    
-
-    with col4:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>ML Studio</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It is a lightweight Machine Learning (ML) streamlit app that help to analyse different types machine learning problems.<br>
-            </div>
-        </div>
-        """,unsafe_allow_html=True,)
-        
-    with col5:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>Web Scapper</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It is a streamlit app that helps user to extract the information from a webpage by uploading the links.<br>
-            </div>
-        </div>
-        """,unsafe_allow_html=True,)
-
-    with col6:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>GenAI Studio</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It is a streamlit app that helps user to execute different GenAI applications like summarization, Q&A, generation, translation, convertion etc.<br>
-            </div>
-        </div>
-        """,unsafe_allow_html=True,)
-
-    with col7:
-        st.markdown(
-        """
-        <div class="aplication-container">
-            <div class="aplication-name"><strong>Chatbot</strong></div>
-            <iv class="aplication-description">
-            <br>
-            It is a streamlit app that helps user access the chatbot application.<br>
-            </div>
-        </div>
-        """,unsafe_allow_html=True,)    
-#---------------------------------------------------------------------------------------------------------------------------------
-if page == "stat_playground":
-    
-    st.divider()
-
     st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://stat-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                Statistics Playground
-            </a>
-            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
-                (click the above link for more details)
-            </p>
+    <a href="#" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">💬</div>
+            <h3 class="card-title">Chatbot</h3>
+            <ul class="card-list">
+                <li>AI-powered chatbot</li>
+                <li>Conversational interface</li>
+                <li>Natural language processing</li>
+                <li>Interactive responses</li>
+            </ul>
         </div>
-        """, unsafe_allow_html=True)
-#---------------------------------------------------------------------------------------------------------------------------------    
-if page == "pdf_playground":
-    
-    st.divider()
-
-    st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://pdf-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                PDF Playground
-            </a>
-            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
-                (click the above link for more details)
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-#--------------------------------------------------------------------------------------------------------------------------------- 
-if page == "image_playground":
-    
-    st.divider()
-
-    st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://image-playground.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                Image Playground
-            </a>
-            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
-                (click the above link for more details)
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-#---------------------------------------------------------------------------------------------------------------------------------
-if page == "ml_studio":
-    
-    st.divider()
-
-    st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://ml-studio.streamlit.app/" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                ML Studio
-            </a>
-            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
-                (click the above link for more details)
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-#--------------------------------------------------------------------------------------------------------------------------------- 
-if page == "web_scapper":
-    
-    st.divider()
-    
-    st.markdown("""
-        <div style="background-color: #E6F5FF; padding: 15px; border-radius: 15px; text-align: center; max-width: 100%; margin: 10px auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-            <a href="https://web-scrapper.streamlit.app//" target="_blank" style="color: #007ACC; font-weight: bold; font-size: 20px; text-decoration: none;">
-                Web Scrapper
-            </a>
-            <p style="color: #333; font-size: 16px; margin-top:5px; margin-bottom:5px;">
-                (click the above link for more details)
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-#---------------------------------------------------------------------------------------------------------------------------------    
-if page == "genai":
-    
-    st.divider()
-#---------------------------------------------------------------------------------------------------------------------------------    
-elif page == "chatbot":
-    
-    st.divider()
+    </a>
+    """, unsafe_allow_html=True)
