@@ -99,80 +99,85 @@ st.markdown(
 #---------------------------------------------------------------------------------------------------------------------------------
 st.markdown("""
 <style>
-.clickable-card {
-    background: white;
-    border-radius: 16px;
-    padding: 25px 20px;
-    box-shadow: 0 6px 18px rgba(0, 30, 80, 0.09);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    height: 100%;
-    border: 1px solid rgba(0, 86, 179, 0.08);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-.clickable-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 30, 80, 0.18);
-    border-color: rgba(0, 86, 179, 0.25);
-}
-.clickable-card:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, #0056b3, #4da6ff);
-}
-.clickable-card .card-icon {
-    font-size: 3.2rem;
-    margin-bottom: 15px;
-    color: #0056b3;
-    font-weight: bold;
-}
-.clickable-card .card-title {
-    color: #004a96;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin: 0 0 15px;
-}
-.clickable-card .card-desc {
-    color: #4a5568;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-    opacity: 0.9;
-}
-.card-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-.card-list li {
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
-}
-.card-list li:before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #0056b3;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    height: 100%;
-}
+    /* Container for the link to remove default underline */
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        height: 100%;
+    }
+
+    /* The Card Itself */
+    .clickable-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Subtle bright gradient */
+        border: 1px solid #eef2f6;
+        border-top: 4px solid #4F8BF9; /* Bright Blue Accent Top Border */
+        border-radius: 16px;
+        padding: 25px;
+        height: 100%; /* Force equal height within column */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Soft shadow */
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Hover Effect: Lift up and glow */
+    .clickable-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(79, 139, 249, 0.25); /* Blue glow on hover */
+        border-top-color: #2c5282;
+    }
+
+    /* Icon Styling */
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Title Styling */
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0 0 15px 0;
+        letter-spacing: -0.5px;
+    }
+
+    /* List Styling */
+    .card-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        flex-grow: 1; /* Pushes content to fill height */
+    }
+
+    .card-list li {
+        font-size: 0.95rem;
+        color: #4a5568;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.5;
+    }
+
+    /* Custom Checkmark Bullet */
+    .card-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #4F8BF9;
+        font-weight: bold;
+    }
+    
+    /* Fix for Streamlit column gaps */
+    .stColumn {
+        display: flex;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -205,10 +210,15 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-#----------------------------------------
+
+
+
+# --- 2. Layout: Two Rows of 4 Columns ---
+
+# ROW 1
 col1, col2, col3, col4 = st.columns(4)
 
-# Card 1: Statistics Playground
+# --- Card 1: Statistics Playground ---
 with col1:
     st.markdown("""
     <a href="https://stat-playground.streamlit.app/" target="_blank" class="card-link">
@@ -225,28 +235,7 @@ with col1:
     </a>
     """, unsafe_allow_html=True)
 
-    #------------------------
-    st.write("---")
-    #------------------------
-    # Card 5: Web Scrapper
-
-    st.markdown("""
-    <a href="https://web-scrapper.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">🌐</div>
-            <h3 class="card-title">Web Scrapper</h3>
-            <ul class="card-list">
-                <li>Extract information from webpages</li>
-                <li>Upload multiple links</li>
-                <li>Scrape structured data</li>
-                <li>Export scraped data</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-    
-#----------------------------------------
-# Card 2: PDF Playground
+# --- Card 2: PDF Playground ---
 with col2:
     st.markdown("""
     <a href="https://pdf-playground.streamlit.app/" target="_blank" class="card-link">
@@ -264,31 +253,8 @@ with col2:
     </a>
     """, unsafe_allow_html=True)
 
-    #------------------------
-    st.write("---")
-    #------------------------
-    # Card 6: GenAI Studio
-
-    st.markdown("""
-        <a href="#" target="_blank" class="card-link">
-            <div class="clickable-card">
-                <div class="card-icon">📝</div>
-                <h3 class="card-title">GenAI Studio</h3>
-                <ul class="card-list">
-                    <li>Text summarization</li>
-                    <li>Question & Answer systems</li>
-                    <li>Content generation</li>
-                    <li>Language translation</li>
-                    <li>Format conversion</li>
-                </ul>
-            </div>
-        </a>
-    """, unsafe_allow_html=True)
-        
-#----------------------------------------
-# Card 3: Image Playground
+# --- Card 3: Image Playground ---
 with col3:
-    
     st.markdown("""
     <a href="https://image-playground.streamlit.app/" target="_blank" class="card-link">
         <div class="clickable-card">
@@ -298,35 +264,15 @@ with col3:
                 <li>Upload and crop images</li>
                 <li>Remove background</li>
                 <li>Mirror and rotate images</li>
-                <li>Convert to grayscale or black & white</li>
-                <li>Adjust brightness, saturation, contrast</li>
+                <li>Convert to grayscale or B&W</li>
+                <li>Adjust brightness & contrast</li>
                 <li>Modify sharpness</li>
             </ul>
         </div>
     </a>
     """, unsafe_allow_html=True)
 
-    #------------------------
-    st.write("---")
-    #------------------------
-    # Card 7: Chatbot
-
-    st.markdown("""
-    <a href="#" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">💬</div>
-            <h3 class="card-title">Chatbot</h3>
-            <ul class="card-list">
-                <li>AI-powered chatbot</li>
-                <li>Conversational interface</li>
-                <li>Natural language processing</li>
-                <li>Interactive responses</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-#----------------------------------------
-# Card 4: ML Studio
+# --- Card 4: ML Studio ---
 with col4:
     st.markdown("""
     <a href="https://ml-studio.streamlit.app/" target="_blank" class="card-link">
@@ -343,12 +289,76 @@ with col4:
     </a>
     """, unsafe_allow_html=True)
 
-    #------------------------
-    st.write("---")
-    #------------------------
+st.write("") # Spacer
 
+# ROW 2
+col5, col6, col7, col8 = st.columns(4)
 
+# --- Card 5: Web Scrapper ---
+with col5:
+    st.markdown("""
+    <a href="https://web-scrapper.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">🌐</div>
+            <h3 class="card-title">Web Scrapper</h3>
+            <ul class="card-list">
+                <li>Extract information from webpages</li>
+                <li>Upload multiple links</li>
+                <li>Scrape structured data</li>
+                <li>Export scraped data</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
 
+# --- Card 6: GenAI Studio ---
+with col6:
+    # Replace '#' with your actual GenAI URL
+    st.markdown("""
+    <a href="#" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">📝</div>
+            <h3 class="card-title">GenAI Studio</h3>
+            <ul class="card-list">
+                <li>Text summarization</li>
+                <li>Question & Answer systems</li>
+                <li>Content generation</li>
+                <li>Language translation</li>
+                <li>Format conversion</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
 
+# --- Card 7: Chatbot ---
+with col7:
+    # Replace '#' with your actual Chatbot URL
+    st.markdown("""
+    <a href="#" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">💬</div>
+            <h3 class="card-title">Chatbot</h3>
+            <ul class="card-list">
+                <li>AI-powered chatbot</li>
+                <li>Conversational interface</li>
+                <li>Natural language processing</li>
+                <li>Interactive responses</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
 
-#----------------------------------------
+# --- Card 8: Placeholder (Optional) ---
+# If you only have 7 cards, this column will be empty. 
+# You can add an 8th card here or leave it blank.
+with col8:
+    st.markdown("""
+    <div class="clickable-card" style="opacity: 0.6; border-style: dashed;">
+        <div class="card-icon">➕</div>
+        <h3 class="card-title">Coming Soon</h3>
+        <ul class="card-list">
+            <li>New tools arriving shortly</li>
+            <li>Stay tuned for updates</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
