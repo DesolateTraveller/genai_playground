@@ -93,103 +93,10 @@ st.markdown(
     unsafe_allow_html=True)
 
 #----------------------------------------
-#st.divider()
-#----------------------------------------
 
 #---------------------------------------------------------------------------------------------------------------------------------
 ### CSS 
 #---------------------------------------------------------------------------------------------------------------------------------
-st.markdown("""
-<style>
-.clickable-card {
-    background: white;
-    border-radius: 16px;
-    padding: 25px 20px;
-    box-shadow: 0 6px 18px rgba(0, 30, 80, 0.09);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    height: 100%;
-    border: 1px solid rgba(0, 86, 179, 0.08);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-.clickable-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 30, 80, 0.18);
-    border-color: rgba(0, 86, 179, 0.25);
-}
-.clickable-card:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, #0056b3, #4da6ff);
-}
-.clickable-card .card-icon {
-    font-size: 3.2rem;
-    margin-bottom: 15px;
-    color: #0056b3;
-    font-weight: bold;
-}
-.clickable-card .card-title {
-    color: #004a96;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin: 0 0 12px;
-}
-.clickable-card .card-desc {
-    color: #4a5568;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-    opacity: 0.9;
-}
-.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    height: 100%;
-}
-</style>
-""", unsafe_allow_html=True)
-
-#---------------------------------------------------------------------------------------------------------------------------------
-### Functions & Definitions
-#---------------------------------------------------------------------------------------------------------------------------------
-
-#---------------------------------------------------------------------------------------------------------------------------------
-### Main app
-#---------------------------------------------------------------------------------------------------------------------------------
-import streamlit as st
-
-# ===== MAIN HEADER =====
-st.markdown("""
-<style>
-.banner {
-    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
-    border-radius: 12px;
-    padding: 15px;
-    margin: 25px 0;
-    border: 1px solid rgba(0, 86, 179, 0.15);
-    text-align: center;
-    font-size: 1.15rem;
-    color: #0056b3;
-    font-weight: 600;
-}
-</style>
-
-<div class="banner">
-    Click the cards below to access different sections and explore the following features
-</div>
-""", unsafe_allow_html=True)
-
-# ===== CLICKABLE CARDS IN SINGLE ROW =====
 st.markdown("""
 <style>
 .clickable-card {
@@ -269,8 +176,37 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Create 7 columns for cards in a single row
-col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+#---------------------------------------------------------------------------------------------------------------------------------
+### Functions & Definitions
+#---------------------------------------------------------------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------------------------------------------------------------
+### Main app
+#---------------------------------------------------------------------------------------------------------------------------------
+
+#----------------------------------------
+st.markdown("""
+<style>
+.banner {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 25px 0;
+    border: 1px solid rgba(0, 86, 179, 0.15);
+    text-align: center;
+    font-size: 1.15rem;
+    color: #0056b3;
+    font-weight: 600;
+}
+</style>
+
+<div class="banner">
+    Click the cards below to access different sections and explore the following features
+</div>
+""", unsafe_allow_html=True)
+
+#----------------------------------------
+col1, col2, col3, col4 = st.columns(4)
 
 # Card 1: Statistics Playground
 with col1:
@@ -283,11 +219,33 @@ with col1:
                 <li>Comprehensive statistical analysis</li>
                 <li>Data visualization tools</li>
                 <li>Investigate relationships within datasets</li>
+                <li>Conduct statistical tests</li>
             </ul>
         </div>
     </a>
     """, unsafe_allow_html=True)
 
+    #------------------------
+    st.write("---")
+    #------------------------
+    # Card 5: Web Scrapper
+
+    st.markdown("""
+    <a href="https://web-scrapper.streamlit.app/" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">🌐</div>
+            <h3 class="card-title">Web Scrapper</h3>
+            <ul class="card-list">
+                <li>Extract information from webpages</li>
+                <li>Upload multiple links</li>
+                <li>Scrape structured data</li>
+                <li>Export scraped data</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+    
+#----------------------------------------
 # Card 2: PDF Playground
 with col2:
     st.markdown("""
@@ -306,8 +264,31 @@ with col2:
     </a>
     """, unsafe_allow_html=True)
 
+    #------------------------
+    st.write("---")
+    #------------------------
+    # Card 6: GenAI Studio
+
+    st.markdown("""
+        <a href="#" target="_blank" class="card-link">
+            <div class="clickable-card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">GenAI Studio</h3>
+                <ul class="card-list">
+                    <li>Text summarization</li>
+                    <li>Question & Answer systems</li>
+                    <li>Content generation</li>
+                    <li>Language translation</li>
+                    <li>Format conversion</li>
+                </ul>
+            </div>
+        </a>
+    """, unsafe_allow_html=True)
+        
+#----------------------------------------
 # Card 3: Image Playground
 with col3:
+    
     st.markdown("""
     <a href="https://image-playground.streamlit.app/" target="_blank" class="card-link">
         <div class="clickable-card">
@@ -325,6 +306,26 @@ with col3:
     </a>
     """, unsafe_allow_html=True)
 
+    #------------------------
+    st.write("---")
+    #------------------------
+    # Card 7: Chatbot
+
+    st.markdown("""
+    <a href="#" target="_blank" class="card-link">
+        <div class="clickable-card">
+            <div class="card-icon">💬</div>
+            <h3 class="card-title">Chatbot</h3>
+            <ul class="card-list">
+                <li>AI-powered chatbot</li>
+                <li>Conversational interface</li>
+                <li>Natural language processing</li>
+                <li>Interactive responses</li>
+            </ul>
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+#----------------------------------------
 # Card 4: ML Studio
 with col4:
     st.markdown("""
@@ -342,54 +343,12 @@ with col4:
     </a>
     """, unsafe_allow_html=True)
 
-# Card 5: Web Scrapper
-with col5:
-    st.markdown("""
-    <a href="https://web-scrapper.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">🌐</div>
-            <h3 class="card-title">Web Scrapper</h3>
-            <ul class="card-list">
-                <li>Extract information from webpages</li>
-                <li>Upload multiple links</li>
-                <li>Scrape structured data</li>
-                <li>Export scraped data</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
+    #------------------------
+    st.write("---")
+    #------------------------
 
-# Card 6: GenAI Studio
-with col6:
-    st.markdown("""
-    <a href="#" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">📝</div>
-            <h3 class="card-title">GenAI Studio</h3>
-            <ul class="card-list">
-                <li>Text summarization</li>
-                <li>Question & Answer systems</li>
-                <li>Content generation</li>
-                <li>Language translation</li>
-                <li>Format conversion</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
 
-# Card 7: Chatbot
-with col7:
-    st.markdown("""
-    <a href="#" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">💬</div>
-            <h3 class="card-title">Chatbot</h3>
-            <ul class="card-list">
-                <li>AI-powered chatbot</li>
-                <li>Conversational interface</li>
-                <li>Natural language processing</li>
-                <li>Interactive responses</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
+
+
+
+#----------------------------------------
