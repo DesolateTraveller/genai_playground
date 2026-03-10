@@ -59,8 +59,7 @@ st.markdown(
         <div class="version-badge"> v0.2 </div>
     </div>
     """,
-    unsafe_allow_html=True
-)
+    unsafe_allow_html=True)
 #----------------------------------------
 st.markdown(
     """
@@ -91,7 +90,6 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True)
-
 #----------------------------------------
 
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -107,62 +105,64 @@ st.markdown("""
         height: 100%;
     }
 
-    /* The Card Itself */
+    /* The Card Itself - COMPACT SIZE */
     .clickable-card {
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Subtle bright gradient */
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         border: 1px solid #eef2f6;
-        border-top: 4px solid #4F8BF9; /* Bright Blue Accent Top Border */
-        border-radius: 16px;
-        padding: 25px;
-        height: 100%; /* Force equal height within column */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Soft shadow */
+        border-top: 4px solid #4F8BF9;
+        border-radius: 12px;
+        padding: 15px 12px;  /* 👈 Reduced padding for smaller cards */
+        height: 100%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        min-height: 300px;  /* 👈 Compact fixed height */
     }
 
-    /* Hover Effect: Lift up and glow */
+    /* Hover Effect */
     .clickable-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(79, 139, 249, 0.25); /* Blue glow on hover */
+        box-shadow: 0 12px 25px rgba(79, 139, 249, 0.25);
         border-top-color: #2c5282;
     }
 
-    /* Icon Styling */
+    /* Icon Styling - Slightly smaller for compact cards */
     .card-icon {
-        font-size: 3rem;
-        margin-bottom: 15px;
+        font-size: 2rem;  /* 👈 Reduced from 3rem */
+        margin-bottom: 10px;
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        line-height: 1;
     }
-
-    /* Title Styling */
+    /* Title - Comfortable & Readable */
     .card-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #2d3748;
-        margin: 0 0 15px 0;
-        letter-spacing: -0.5px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #1a5490;
+        margin: 0 0 14px 0;
+        line-height: 1.3;
     }
 
-    /* List Styling */
+    /* Feature List - Eye-soothing */
     .card-list {
         list-style: none;
         padding: 0;
         margin: 0;
         width: 100%;
         text-align: left;
-        flex-grow: 1; /* Pushes content to fill height */
+        flex-grow: 1;
     }
 
     .card-list li {
-        font-size: 0.95rem;
-        color: #4a5568;
-        margin-bottom: 10px;
+        font-size: 0.85rem;
+        color: #5a6c7d;
+        margin-bottom: 8px;
         padding-left: 20px;
         position: relative;
         line-height: 1.5;
+        font-weight: 400;
     }
 
     /* Custom Checkmark Bullet */
@@ -172,11 +172,31 @@ st.markdown("""
         left: 0;
         color: #4F8BF9;
         font-weight: bold;
+        font-size: 1rem;
     }
     
     /* Fix for Streamlit column gaps */
     .stColumn {
         display: flex;
+    }
+    
+    /* Responsive: wrap cards on smaller screens */
+    @media (max-width: 1200px) {
+        .clickable-card {
+            min-height: 240px;
+        }
+    }
+    @media (max-width: 768px) {
+        .clickable-card {
+            min-height: auto;
+            padding: 12px 10px;
+        }
+        .card-title {
+            font-size: 1.15rem;
+        }
+        .card-list li {
+            font-size: 1.05rem;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -189,7 +209,6 @@ st.markdown("""
 ### Main app
 #---------------------------------------------------------------------------------------------------------------------------------
 
-#----------------------------------------
 st.markdown("""
 <style>
 .banner {
@@ -210,155 +229,152 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+#----------------------------------------
 
+cards_data = [
+    {
+        "title": "Statistics Playground",
+        "icon": "📊",
+        "url": "https://stat-playground.streamlit.app/",
+        "features": [
+            "Comprehensive statistical analysis",
+            "Data visualization tools",
+            "Investigate relationships within datasets",
+            "Conduct statistical tests"
+        ]
+    },
+    {
+        "title": "PDF Playground",
+        "icon": "📘",
+        "url": "https://pdf-playground.streamlit.app/",
+        "features": [
+            "Preview and extract PDF content",
+            "Extract metadata from PDFs",
+            "Add or remove passwords",
+            "Modify, merge, convert PDFs",
+            "Compress PDF files"
+        ]
+    },
+    {
+        "title": "Image Playground",
+        "icon": "🖼️",
+        "url": "https://image-playground.streamlit.app/",
+        "features": [
+            "Upload and crop images",
+            "Remove background",
+            "Mirror and rotate images",
+            "Convert to grayscale or B&W",
+            "Adjust brightness & contrast",
+            "Modify sharpness"
+        ]
+    },
+    {
+        "title": "Machine learning (ML) Studio",
+        "icon": "📈",
+        "url": "https://ml-studio.streamlit.app/",
+        "features": [
+            "Lightweight ML application",
+            "Analyze different ML problems",
+            "Machine learning model training",
+            "Prediction and evaluation tools"
+        ]
+    },
+    {
+        "title": "Web Scrapper",
+        "icon": "🌐",
+        "url": "https://web-scrapper.streamlit.app/",
+        "features": [
+            "Extract information from webpages",
+            "Upload multiple links",
+            "Scrape structured data",
+            "Export scraped data"
+        ]
+    },
+    {
+        "title": "GenAI Studio",
+        "icon": "📝",
+        "url": "#",  # 👈 Replace with actual URL
+        "features": [
+            "Text summarization",
+            "Question & Answer systems",
+            "Content generation",
+            "Language translation",
+            "Format conversion"
+        ]
+    },
+    {
+        "title": "Chatbot",
+        "icon": "💬",
+        "url": "#",  # 👈 Replace with actual URL
+        "features": [
+            "AI-powered chatbot",
+            "Conversational interface",
+            "Natural language processing",
+            "Interactive responses"
+        ]
+    },
+    {
+        "title": "Forecasting Studio",
+        "icon": "📈",
+        "url": "https://ts-forecasting.streamlit.app/",  
+        "features": [
+            "Forecast new data",
+            "Find trend based on historical data"
+        ],
+    },
+    {
+        "title": "ML Code Generator",
+        "icon": "📈",
+        "url": "https://ml-code-gen.streamlit.app//",  
+        "features": [
+            "Generate code based on request",
+            "Options to develop full length code"
+        ],
+    },
+    {
+        "title": "Coming Soon",
+        "icon": "➕",
+        "url": None,
+        "features": [
+            "New tools arriving shortly",
+            "Stay tuned for updates"
+        ],
+        "placeholder": True
+    }    
+]
 
+#----------------------------------------
+num_cols = 5# 👈 Adjust this value to change number of columns (e.g., 4, 5, 6)
+cols = st.columns(num_cols)
 
-# --- 2. Layout: Two Rows of 4 Columns ---
+# Distribute cards across columns
+for idx, card in enumerate(cards_data):
+    col_idx = idx % num_cols  # Cycle through columns
+    with cols[col_idx]:
+        # Handle placeholder cards differently
+        if card.get("placeholder"):
+            card_html = f"""
+            <div class="clickable-card" style="opacity: 0.6; border-style: dashed; cursor: default;">
+                <div class="card-icon">{card['icon']}</div>
+                <h3 class="card-title">{card['title']}</h3>
+                <ul class="card-list">
+                    {''.join(f"<li>{feat}</li>" for feat in card['features'])}
+                </ul>
+            </div>
+            """
+            st.markdown(card_html, unsafe_allow_html=True)
+        else:
+            card_html = f"""
+            <a href="{card['url'].strip()}" target="_blank" class="card-link">
+                <div class="clickable-card">
+                    <div class="card-icon">{card['icon']}</div>
+                    <h3 class="card-title">{card['title']}</h3>
+                    <ul class="card-list">
+                        {''.join(f"<li>{feat}</li>" for feat in card['features'])}
+                    </ul>
+                </div>
+            </a>
+            """
+            st.markdown(card_html, unsafe_allow_html=True)
 
-# ROW 1
-col1, col2, col3, col4 = st.columns(4)
-
-# --- Card 1: Statistics Playground ---
-with col1:
-    st.markdown("""
-    <a href="https://stat-playground.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">📊</div>
-            <h3 class="card-title">Statistics Playground</h3>
-            <ul class="card-list">
-                <li>Comprehensive statistical analysis</li>
-                <li>Data visualization tools</li>
-                <li>Investigate relationships within datasets</li>
-                <li>Conduct statistical tests</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Card 2: PDF Playground ---
-with col2:
-    st.markdown("""
-    <a href="https://pdf-playground.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">📘</div>
-            <h3 class="card-title">PDF Playground</h3>
-            <ul class="card-list">
-                <li>Preview and extract PDF content</li>
-                <li>Extract metadata from PDFs</li>
-                <li>Add or remove passwords</li>
-                <li>Modify, merge, convert PDFs</li>
-                <li>Compress PDF files</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Card 3: Image Playground ---
-with col3:
-    st.markdown("""
-    <a href="https://image-playground.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">🖼️</div>
-            <h3 class="card-title">Image Playground</h3>
-            <ul class="card-list">
-                <li>Upload and crop images</li>
-                <li>Remove background</li>
-                <li>Mirror and rotate images</li>
-                <li>Convert to grayscale or B&W</li>
-                <li>Adjust brightness & contrast</li>
-                <li>Modify sharpness</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Card 4: ML Studio ---
-with col4:
-    st.markdown("""
-    <a href="https://ml-studio.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">📈</div>
-            <h3 class="card-title">ML Studio</h3>
-            <ul class="card-list">
-                <li>Lightweight ML application</li>
-                <li>Analyze different ML problems</li>
-                <li>Machine learning model training</li>
-                <li>Prediction and evaluation tools</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-st.write("") # Spacer
-
-# ROW 2
-col5, col6, col7, col8 = st.columns(4)
-
-# --- Card 5: Web Scrapper ---
-with col5:
-    st.markdown("""
-    <a href="https://web-scrapper.streamlit.app/" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">🌐</div>
-            <h3 class="card-title">Web Scrapper</h3>
-            <ul class="card-list">
-                <li>Extract information from webpages</li>
-                <li>Upload multiple links</li>
-                <li>Scrape structured data</li>
-                <li>Export scraped data</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Card 6: GenAI Studio ---
-with col6:
-    # Replace '#' with your actual GenAI URL
-    st.markdown("""
-    <a href="#" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">📝</div>
-            <h3 class="card-title">GenAI Studio</h3>
-            <ul class="card-list">
-                <li>Text summarization</li>
-                <li>Question & Answer systems</li>
-                <li>Content generation</li>
-                <li>Language translation</li>
-                <li>Format conversion</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Card 7: Chatbot ---
-with col7:
-    # Replace '#' with your actual Chatbot URL
-    st.markdown("""
-    <a href="#" target="_blank" class="card-link">
-        <div class="clickable-card">
-            <div class="card-icon">💬</div>
-            <h3 class="card-title">Chatbot</h3>
-            <ul class="card-list">
-                <li>AI-powered chatbot</li>
-                <li>Conversational interface</li>
-                <li>Natural language processing</li>
-                <li>Interactive responses</li>
-            </ul>
-        </div>
-    </a>
-    """, unsafe_allow_html=True)
-
-# --- Card 8: Placeholder (Optional) ---
-# If you only have 7 cards, this column will be empty. 
-# You can add an 8th card here or leave it blank.
-with col8:
-    st.markdown("""
-    <div class="clickable-card" style="opacity: 0.6; border-style: dashed;">
-        <div class="card-icon">➕</div>
-        <h3 class="card-title">Coming Soon</h3>
-        <ul class="card-list">
-            <li>New tools arriving shortly</li>
-            <li>Stay tuned for updates</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+st.write("")  # Spacer at bottom
