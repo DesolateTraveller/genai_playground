@@ -166,14 +166,18 @@ st.markdown("""
 <style>
 .banner {
     background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #007BFF; 
+    padding: 10px;
+    background-color: #FFFFFF; 
     border-radius: 20px;
-    padding: 15px;
-    margin: 25px 0;
-    border: 1px solid rgba(0, 86, 179, 0.15);
-    text-align: center;
-    font-size: 1.25rem;
-    color: #0056b3;
-    font-weight: 600;
+    border: 1px solid #007BFF;
+    margin-top: 1px;
+    margin-bottom: 20px;
 }
 </style>
 <div class="banner">
